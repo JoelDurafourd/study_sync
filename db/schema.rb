@@ -20,13 +20,12 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_13_073640) do
     t.integer "status", default: 0
     t.bigint "user_id", null: false
     t.boolean "status", default: false
-    t.bigint "users_id", null: false
+    t.bigint "user_id", null: false
     t.bigint "lesson_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["lesson_id"], name: "index_bookings_on_lesson_id"
     t.index ["user_id"], name: "index_bookings_on_user_id"
-    t.index ["users_id"], name: "index_bookings_on_users_id"
   end
 
   create_table "lessons", force: :cascade do |t|
@@ -38,23 +37,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_13_073640) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_lessons_on_user_id"
-  end
-
-  create_table "users", force: :cascade do |t|
-    t.string "first_name"
-    t.string "last_name"
-    t.text "description"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_foreign_key "bookings", "lessons"
-  add_foreign_key "bookings", "users"
-  add_foreign_key "lessons", "users"
-    t.bigint "users_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["users_id"], name: "index_lessons_on_users_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -71,6 +53,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_13_073640) do
   end
 
   add_foreign_key "bookings", "lessons"
-  add_foreign_key "bookings", "users", column: "users_id"
-  add_foreign_key "lessons", "users", column: "users_id"
+  add_foreign_key "bookings", "users"
+  add_foreign_key "lessons", "users"
 end
