@@ -13,7 +13,8 @@ class LessonsController < ApplicationController
 
   def create
     @lesson = Lesson.new(lesson_params)
-    if @lesson.save
+    @lesson.user = current_user
+    if @lesson.save!
       redirect_to lesson_path(@lesson)
     else
       render :new, status: :unprocessable_entity
@@ -42,6 +43,6 @@ class LessonsController < ApplicationController
   private
 
   def lesson_params
-    params.require(:lesson).permit(:name, :photo)
+    params.require(:lesson).permit(:category, :description, :title, :price )
   end
 end

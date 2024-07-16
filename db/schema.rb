@@ -18,12 +18,12 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_16_040206) do
     t.datetime "start_date"
     t.datetime "end_date"
     t.boolean "status", default: false
-    t.bigint "users_id", null: false
+    t.bigint "user_id", null: false
     t.bigint "lesson_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["lesson_id"], name: "index_bookings_on_lesson_id"
-    t.index ["users_id"], name: "index_bookings_on_users_id"
+    t.index ["user_id"], name: "index_bookings_on_user_id"
   end
 
   create_table "lessons", force: :cascade do |t|
@@ -31,10 +31,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_16_040206) do
     t.text "description"
     t.string "title"
     t.float "price"
-    t.bigint "users_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["users_id"], name: "index_lessons_on_users_id"
+    t.index ["user_id"], name: "index_lessons_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -51,6 +51,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_16_040206) do
   end
 
   add_foreign_key "bookings", "lessons"
-  add_foreign_key "bookings", "users", column: "users_id"
-  add_foreign_key "lessons", "users", column: "users_id"
+  add_foreign_key "bookings", "users"
+  add_foreign_key "lessons", "users"
 end
