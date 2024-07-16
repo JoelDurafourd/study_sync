@@ -14,7 +14,6 @@ class LessonsController < ApplicationController
   end
 
   def create
-    @list = List.find(params[:list_id])
     @lesson = Lesson.new(lesson_params)
     @lesson.user = current_user
     if @lesson.save!
