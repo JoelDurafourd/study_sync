@@ -14,6 +14,7 @@ class LessonsController < ApplicationController
   end
 
   def create
+    @list = List.find(params[:list_id])
     @lesson = Lesson.new(lesson_params)
     if @lesson.save
       redirect_to lesson_path(@lesson)

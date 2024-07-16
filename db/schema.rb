@@ -10,33 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
 ActiveRecord::Schema[7.1].define(version: 2024_07_13_073640) do
-=======
-ActiveRecord::Schema[7.1].define(version: 2024_07_16_040206) do
->>>>>>> 8688f4aeb05d75942f755432491f3bbd3cb56fbb
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "bookings", force: :cascade do |t|
     t.datetime "start_date"
     t.datetime "end_date"
-<<<<<<< HEAD
     t.integer "status", default: 0
     t.bigint "user_id", null: false
-=======
     t.boolean "status", default: false
     t.bigint "users_id", null: false
->>>>>>> 8688f4aeb05d75942f755432491f3bbd3cb56fbb
     t.bigint "lesson_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["lesson_id"], name: "index_bookings_on_lesson_id"
-<<<<<<< HEAD
     t.index ["user_id"], name: "index_bookings_on_user_id"
-=======
     t.index ["users_id"], name: "index_bookings_on_users_id"
->>>>>>> 8688f4aeb05d75942f755432491f3bbd3cb56fbb
   end
 
   create_table "lessons", force: :cascade do |t|
@@ -44,7 +34,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_16_040206) do
     t.text "description"
     t.string "title"
     t.float "price"
-<<<<<<< HEAD
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -62,7 +51,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_16_040206) do
   add_foreign_key "bookings", "lessons"
   add_foreign_key "bookings", "users"
   add_foreign_key "lessons", "users"
-=======
     t.bigint "users_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -85,5 +73,4 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_16_040206) do
   add_foreign_key "bookings", "lessons"
   add_foreign_key "bookings", "users", column: "users_id"
   add_foreign_key "lessons", "users", column: "users_id"
->>>>>>> 8688f4aeb05d75942f755432491f3bbd3cb56fbb
 end
