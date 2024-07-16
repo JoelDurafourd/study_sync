@@ -5,7 +5,7 @@ class CreateLessons < ActiveRecord::Migration[7.1]
       t.text :description
       t.string :title
       t.float :price
-      t.references :user, null: false, foreign_key: true
+      t.references :users, null: false, foreign_key: true
 
       t.timestamps
     end

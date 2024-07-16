@@ -1,0 +1,8 @@
+<%= simple_form_for([@user, @lesson]) do |f| %>
+  <%= f.input :category %>
+  <%= f.input :description %>
+  <%= f.input :title %>
+  <%= f.input :price %>
+  <%= f.submit  class: "nav-button col-12"%>
+<% end %>
+<%= link_to "Back to lesson", "/lessons", class: "nav-button col-12"%>
