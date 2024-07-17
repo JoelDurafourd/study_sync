@@ -4,3 +4,27 @@
 <h2>First Name: <%= @user.first_name %></h2>
 <h2>Last Name: <%= @user.last_name %></h2>
 <h2>Description: <%= @user.description %></h2>
+
+<h1>teaching lessons</h1>
+  <% @user.lessons.each do |lesson| %>
+    <a href="<%= lesson_path(lesson) %>">
+    <div class="card-category">
+    <h1><%= lesson.title %></h1>
+    <h2>category <%= lesson.category %></h2>
+    <h2>description <%= lesson.description %></h2>
+    <h2>price <%= lesson.price %></h2>
+    <h2>user <%= lesson.user.email %></h2>
+    </div>
+    </a>
+  <% end %>
+<h1>booked lessons</h1>
+  <% @user.bookings.each do |booking| %>
+    <a href="<%= booking_path(booking) %>">
+    <div class="card-category">
+    <h1><%= booking.lesson.title %></h1>
+    <h2>start_date <%= booking.start_date %></h2>
+    <h2>end_date <%= booking.end_date %></h2>
+    <h2>status <%= booking.status %></h2>
+    </div>
+    </a>
+  <% end %>
