@@ -19,7 +19,7 @@
   <% end %>
 <h1>booked lessons</h1>
   <% @user.bookings.each do |booking| %>
-    <a href="<%= booking_path(booking) %>">
+    <a href="<%= lesson_booking_path(booking.lesson, booking) %>">
     <div class="card-category">
     <h1><%= booking.lesson.title %></h1>
     <h2>start_date <%= booking.start_date %></h2>
