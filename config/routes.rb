@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "lessons#index"
   resources :lessons, except: [:destroy] do
-    resources :bookings, only: [:new, :create]
+    resources :bookings, only: [:new, :create, :show]
   end
   resources :bookings, only: [:destroy]
 end
