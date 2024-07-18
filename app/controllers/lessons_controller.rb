@@ -2,7 +2,11 @@ class LessonsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
-    @lessons = Lesson.all
+    if params[:query].present?
+      @lessons = Lesson.search_by_category_description_title(params[:query])
+    else
+      @lessons = Lesson.all
+    end
   end
 
   def show
