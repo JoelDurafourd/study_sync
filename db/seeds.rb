@@ -8,6 +8,7 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 require 'faker'
+require 'uri'
 
 puts "Destroying Bookings...!"
 Booking.destroy_all
