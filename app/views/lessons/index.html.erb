@@ -1,18 +1,45 @@
-<h1>Welcome to Study-Sync!</h1>
-<% @lessons.each do |lesson| %>
-<a href="<%= lesson_path(lesson) %>">
-          <% if lesson.user.photo.present? %>
-          <%= cl_image_tag(lesson.user.photo.key, class: "avatar", alt: "User Avatar") %>
-          <% else %>
-          <%= image_tag("default_avatar.png", class: "avatar", alt: "Default Avatar") %>
-          <% end %>
-<div class="card-category">
-<h1><%= lesson.title %></h1>
-<h2>category <%= lesson.category %></h2>
-<h2>description <%= lesson.description %></h2>
-<h2>price <%= lesson.price %></h2>
-<h2>user <%= lesson.user.email %></h2>
+<!-- Banner Section -->
+<div class="banner">
+  <%= image_tag('banner_image.jpg', alt: "Banner Image", class: "banner-image") %>
 </div>
-</a>
-<% end %>
-<%= link_to "New Lesson", new_lesson_path, class: "nav-button col-12"%>
+
+<div class="row justify-content-center">
+  <div class="col-8 my-3 text-center">
+    <%= form_with url: lessons_path, method: :get, class: "d-flex justify-content-center align-items-center" do %>
+      <%= text_field_tag :query, params[:query], class: "form-control form-control-lg me-2", placeholder: "Type a keyword" %>
+      <%= submit_tag "Search", name: "", class: "btn btn-light btn-lg" %>
+    <% end %>
+  </div>
+</div>
+
+<div class="categories text-center">
+  <h1>CATEGORIES</h1>
+  <ul class="d-flex justify-content-center list-inline">
+    <li class="list-inline-item">Category 1</li>
+    <li class="list-inline-item">Category 2</li>
+    <li class="list-inline-item">Category 3</li>
+    <li class="list-inline-item">Category 4</li>
+  </ul>
+</div>
+
+<div class="card-container">
+  <% @lessons.each do |lesson| %>
+    <div class="card" style="width: 18rem;">
+      <% if lesson.user.photo.present? %>
+        <%= cl_image_tag(lesson.user.photo.key, class: "card-img-top", alt: "User Avatar") %>
+      <% else %>
+        <%= image_tag("default_avatar.png", class: "card-img-top", alt: "Default Avatar") %>
+      <% end %>
+      <div class="card-body">
+        <h5 class="card-title"><%= lesson.title %></h5>
+        <p class="card-text">Category: <%= lesson.category %></p>
+        <p class="card-text">Description: <%= lesson.description %></p>
+        <p class="card-text">Price: <%= lesson.price %></p>
+        <p class="card-text">User: <%= lesson.user.email %></p>
+        <a href="<%= lesson_path(lesson) %>" class="btn btn-primary">Go to Lesson</a>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<%= link_to "New Lesson", new_lesson_path, class: "nav-button col-12" %>
