@@ -8,4 +8,14 @@ class Lesson < ApplicationRecord
   validates :price, presence: true, numericality: { minimum: 0 }
 
   has_many_attached :photos
+
+  include PgSearch::Model
+    pg_search_scope :search_by_category_description_title,
+      against: [ :title, :category, :description ],
+      associated_against: {
+        user: [ :first_name, :last_name, :email ]
+      },
+      using: {
+        tsearch: { prefix: true }
+      }
 end
