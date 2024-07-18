@@ -45,6 +45,6 @@ class LessonsController < ApplicationController
   private
 
   def lesson_params
-    params.require(:lesson).permit(:category, :description, :title, :price )
+    params.require(:lesson).permit(:category, :description, :title, :price, photos: [])
   end
 end

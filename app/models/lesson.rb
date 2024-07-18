@@ -6,4 +6,6 @@ class Lesson < ApplicationRecord
   validates :description, presence: true, length: { in: 3..1000 }
   validates :title, presence: true, length: { in: 3..55 }
   validates :price, presence: true, numericality: { minimum: 0 }
+
+  has_many_attached :photos
 end
