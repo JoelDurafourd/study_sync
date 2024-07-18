@@ -1,6 +1,11 @@
 <h1>Welcome to Study-Sync!</h1>
 <% @lessons.each do |lesson| %>
 <a href="<%= lesson_path(lesson) %>">
+          <% if lesson.user.photo.present? %>
+          <%= cl_image_tag(lesson.user.photo.key, class: "avatar", alt: "User Avatar") %>
+          <% else %>
+          <%= image_tag("default_avatar.png", class: "avatar", alt: "Default Avatar") %>
+          <% end %>
 <div class="card-category">
 <h1><%= lesson.title %></h1>
 <h2>category <%= lesson.category %></h2>
