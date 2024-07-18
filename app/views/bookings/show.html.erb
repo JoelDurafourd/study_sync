@@ -4,5 +4,7 @@
     <h2>status <%= @booking.status %></h2>
     </div>
 
+<% if @booking.lesson.user == current_user %>
 <%= link_to('Accept', booking_accept_path(@booking)) %>
 <%= link_to('Decline', booking_decline_path(@booking)) %>
+<% end %>
