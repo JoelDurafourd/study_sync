@@ -1,0 +1,8 @@
+<h1><%= @booking.lesson.title %></h1>
+    <h2>start_date <%= @booking.start_date %></h2>
+    <h2>end_date <%= @booking.end_date %></h2>
+    <h2>status <%= @booking.status %></h2>
+    </div>
+
+<%= link_to('Accept', booking_accept_path(@booking)) %>
+<%= link_to('Decline', booking_decline_path(@booking)) %>
