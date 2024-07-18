@@ -12,4 +12,8 @@ class User < ApplicationRecord
   has_many :lessons
 
   has_one_attached :photo
+
+  def booking_requests
+    bookings.where(lesson: lessons)
+  end
 end

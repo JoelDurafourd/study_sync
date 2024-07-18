@@ -8,18 +8,18 @@ class BookingsController < ApplicationController
   end
 
   def new
-    @booking = Booking.new
+    @booking = Booking.new(lesson: @lesson, user: current_user)
     @lesson = Lesson.find(params[:lesson_id])
     @booking.user = current_user
   end
 
   def create
-    @booking = Booking.new(booking_params)
+    @booking = Booking.new(booking_params.merge(lesson: @lesson, user: current_user))
     @lesson = Lesson.find(params[:lesson_id])
     @booking.lesson_id = @lesson.id
     @booking.user = current_user
     if @booking.save
-      redirect_to lesson_path(@lesson)
+      redirect_to lesson_path(@lesson), notice: 'Booking successfully created!'
     else
       render :new, status: :unprocessable_entity
     end
@@ -44,9 +44,23 @@ class BookingsController < ApplicationController
     redirect_to list_path(@booking.list), status: :see_other
   end
 
+  def accept
+    @booking = Booking.find(params[:booking_id])
+    if @booking.update(status: :accepted)
+      redirect_to booking_path(@booking)
+    end
+  end
+
+  def decline
+    @booking = Booking.find(params[:booking_id])
+    if @booking.update(status: :declined)
+      redirect_to booking_path(@booking)
+    end
+  end
+
   private
 
   def booking_params
-    params.require(:booking).permit(:start_date, :end_date)
+    params.require(:booking).permit(:start_date, :end_date, :status)
   end
 end
