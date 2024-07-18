@@ -1,6 +1,6 @@
 class User < ApplicationRecord
-  has_many :lessons
-  has_many :bookings
+  has_many :lessons, dependent: :destroy
+  has_many :bookings, dependent: :destroy
 
   # validates :first_name, presence: true, length: { in: 1..100 }
   # validates :last_name, presence: true, length: { in: 1..100 }
