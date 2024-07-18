@@ -3,6 +3,7 @@
   <%= image_tag('banner_image.jpg', alt: "Banner Image", class: "banner-image") %>
 </div>
 
+<div class="search-bar">
 <div class="row justify-content-center">
   <div class="col-8 my-3 text-center">
     <%= form_with url: lessons_path, method: :get, class: "d-flex justify-content-center align-items-center" do %>
@@ -11,15 +12,34 @@
     <% end %>
   </div>
 </div>
+</div>
 
-<div class="categories text-center">
-  <h1>CATEGORIES</h1>
-  <ul class="d-flex justify-content-center list-inline">
-    <li class="list-inline-item">Category 1</li>
-    <li class="list-inline-item">Category 2</li>
-    <li class="list-inline-item">Category 3</li>
-    <li class="list-inline-item">Category 4</li>
-  </ul>
+<div class="categories-container">
+  <div class="categories text-center">
+    <h1>CATEGORIES</h1>
+    <ul class="d-flex justify-content-center list-inline">
+      <li class="list-inline-item">
+        <%= image_tag('programming.png', alt: "programming", class: "category-icon programming") %>
+         <span class="category-name">PROGRAMMING</span>
+      </li>
+      <li class="list-inline-item">
+        <%= image_tag('science-logo.png', alt: "science-logo", class: "category-icon science-logo") %>
+         <span class="category-name">SCIENCE</span>
+      </li>
+      <li class="list-inline-item">
+        <%= image_tag('mathematics-logo.png', alt: "mathematics-logo", class: "category-icon mathematics-logo") %>
+         <span class="category-name">MATHEMATICS</span>
+      </li>
+      <li class="list-inline-item">
+        <%= image_tag('music-logo.png', alt: "music-logo", class: "category-icon music-logo") %>
+         <span class="category-name">MUSIC</span>
+      </li>
+      <li class="list-inline-item">
+        <%= image_tag('foreign-languages.png', alt: "foreign-languages", class: "category-icon foreign-languages") %>
+         <span class="category-name">FOREIGN LANGUAGES</span>
+      </li>
+    </ul>
+  </div>
 </div>
 
 <div class="card-container">
