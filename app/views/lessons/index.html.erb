@@ -27,14 +27,22 @@
   </a>
 </div>
 
-<div class="search-bar">
-  <div class="row justify-content-center">
-    <div class="col-8 my-3 text-center">
-      <%= form_with url: lessons_path, method: :get, class: "d-flex justify-content-center align-items-center" do %>
-        <%= text_field_tag :query, params[:query], class: "form-control form-control-lg me-2", placeholder: "Type a keyword" %>
-        <%= submit_tag "Search", name: "", class: "btn btn-light btn-lg" %>
-      <% end %>
-    </div>
+<!-- Search Bar Section -->
+<div class="search-bar-container">
+  <div class="search-bar">
+    <%= form_with url: lessons_path, method: :get, class: "search-form" do %>
+      <div class="search-input">
+        <p><b>Search:</b></p>
+        <%= text_field_tag :query, params[:query], class: "form-control", placeholder: "Type a tutor name, lessons, keywords" %>
+      </div>
+      <div class="search-category">
+              <p><b>Categories:</b></p>
+        <%= select_tag :category, options_for_select(['All Categories', 'Programming', 'Science', 'Mathematics', 'Music', 'Foreign Languages'], selected: params[:category]), class: "form-control" %>
+      </div>
+      <div class="search-button">
+        <%= submit_tag "Search", name: "", class: "btn-search" %>
+      </div>
+    <% end %>
   </div>
 </div>
 
