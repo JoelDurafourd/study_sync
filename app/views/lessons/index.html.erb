@@ -46,9 +46,9 @@
   <% @lessons.each do |lesson| %>
     <div class="card" style="width: 18rem;">
       <% if lesson.user.photo.present? %>
-        <%= cl_image_tag(lesson.user.photo.key, class: "card-img-top", alt: "User Avatar") %>
+        <%= link_to cl_image_tag(lesson.user.photo.key, class: "card-img-top", alt: "User Avatar"), user_path(lesson.user) %>
       <% else %>
-        <%= image_tag("default_avatar.png", class: "card-img-top", alt: "Default Avatar") %>
+        <%= link_to image_tag("default_avatar.png", class: "card-img-top", alt: "Default Avatar"), user_path(lesson.user) %>
       <% end %>
       <div class="card-body">
         <h5 class="card-title"><%= lesson.title %></h5>
