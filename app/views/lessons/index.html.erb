@@ -1,17 +1,41 @@
-<!-- Banner Section -->
-<div class="banner">
-  <%= image_tag('banner_image.jpg', alt: "Banner Image", class: "banner-image") %>
+
+<!-- Carousel Section -->
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+  </ol>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <%= image_tag('banner_image.jpg', alt: "First slide", class: "d-block w-100") %>
+    </div>
+    <div class="carousel-item">
+      <%= image_tag('banner_img_slide2.jpg', alt: "Second slide", class: "d-block w-100") %>
+    </div>
+    <div class="carousel-item">
+      <%= image_tag('banner_slide3.jpg', alt: "Third slide", class: "d-block w-100") %>
+    </div>
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
 </div>
 
 <div class="search-bar">
-<div class="row justify-content-center">
-  <div class="col-8 my-3 text-center">
-    <%= form_with url: lessons_path, method: :get, class: "d-flex justify-content-center align-items-center" do %>
-      <%= text_field_tag :query, params[:query], class: "form-control form-control-lg me-2", placeholder: "Type a keyword" %>
-      <%= submit_tag "Search", name: "", class: "btn btn-light btn-lg" %>
-    <% end %>
+  <div class="row justify-content-center">
+    <div class="col-8 my-3 text-center">
+      <%= form_with url: lessons_path, method: :get, class: "d-flex justify-content-center align-items-center" do %>
+        <%= text_field_tag :query, params[:query], class: "form-control form-control-lg me-2", placeholder: "Type a keyword" %>
+        <%= submit_tag "Search", name: "", class: "btn btn-light btn-lg" %>
+      <% end %>
+    </div>
   </div>
-</div>
 </div>
 
 <div class="categories-container">
@@ -20,23 +44,23 @@
     <ul class="d-flex justify-content-center list-inline">
       <li class="list-inline-item">
         <%= image_tag('programming.png', alt: "programming", class: "category-icon programming") %>
-         <span class="category-name">PROGRAMMING</span>
+        <span class="category-name">PROGRAMMING</span>
       </li>
       <li class="list-inline-item">
         <%= image_tag('science-logo.png', alt: "science-logo", class: "category-icon science-logo") %>
-         <span class="category-name">SCIENCE</span>
+        <span class="category-name">SCIENCE</span>
       </li>
       <li class="list-inline-item">
         <%= image_tag('mathematics-logo.png', alt: "mathematics-logo", class: "category-icon mathematics-logo") %>
-         <span class="category-name">MATHEMATICS</span>
+        <span class="category-name">MATHEMATICS</span>
       </li>
       <li class="list-inline-item">
         <%= image_tag('music-logo.png', alt: "music-logo", class: "category-icon music-logo") %>
-         <span class="category-name">MUSIC</span>
+        <span class="category-name">MUSIC</span>
       </li>
       <li class="list-inline-item">
         <%= image_tag('foreign-languages.png', alt: "foreign-languages", class: "category-icon foreign-languages") %>
-         <span class="category-name">FOREIGN LANGUAGES</span>
+        <span class="category-name">FOREIGN LANGUAGES</span>
       </li>
     </ul>
   </div>
