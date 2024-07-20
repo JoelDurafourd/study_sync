@@ -1,5 +1,6 @@
+<h1>connected</h1>
 <%= simple_form_for @lesson do |f| %>
-  <%= f.input :category %>
+  <%= f.select :category, Lesson::CATEGORIES, { prompt: 'Select a category' }, class: 'form-control' %>
   <%= f.input :description %>
   <%= f.input :title %>
   <%= f.input :price %>
