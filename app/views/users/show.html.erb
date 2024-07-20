@@ -28,6 +28,7 @@
 <div class="user_h1"><h1>User's Lessons</h1></div>
   <% @user.lessons.each do |lesson| %>
     <a href="<%= lesson_path(lesson) %>">
+
     <div class="card-category">
     <h1><%= lesson.title %></h1>
     <h2>category <%= lesson.category %></h2>
@@ -43,17 +44,23 @@
 
 <div class="user_h1"><h1>Booked Lessons</h1></div>
   <% @user.bookings.each do |booking| %>
-    <a href="<%= lesson_booking_path(booking.lesson, booking) %>">
-    <div class="card-category">
-    <h1><%= booking.lesson.title %></h1>
-    <h2>start_date <%= booking.start_date %></h2>
-    <h2>end_date <%= booking.end_date %></h2>
-    <h2>status <%= booking.status %></h2>
-    <h2>    <% if booking.user == current_user %>
-      <%= link_to "Cancel booking?", booking_path(booking), data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to cancel?"} %>
-    <% end %></h2>
+    <div class="booked-lessons">
+  <% if @user.photo.present? %>
+        <%= link_to cl_image_tag(@user.photo.key, class: "card-img-top", alt: "User Avatar"), user_path(@user) %>
+      <% else %>
+        <%= link_to image_tag("default_avatar.png", class: "card-img-top", alt: "Default Avatar"), user_path(@user) %>
+      <% end %>
+      <div class="booked-lessons-infos">
+        <h2><%= booking.lesson.title %></h2>
+        <p><%= booking.start_date %></p>
+        <p><%= booking.end_date %></p>
+        <p><%= booking.status %></p>
+        <p> <% if booking.user == current_user %>
+            <%= link_to "Cancel booking?", booking_path(booking), data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to cancel?"} %>
+            <% end %></p>
+      </div>
     </div>
-    </a>
+    </div>
   <% end %>
 
 

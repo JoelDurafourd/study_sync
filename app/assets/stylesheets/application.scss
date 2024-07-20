@@ -90,3 +90,38 @@ padding: 10px;
 .user_page .user_page-infos {
   padding: 20px;
 }
+
+.booked-lessons {
+  overflow: hidden;
+  height: 250px;
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+
+.booked-lessons img {
+  height: 100%;
+  width: 120px;
+  object-fit: cover;
+  padding-right: 10px;
+}
+
+.booked-lessons h2 {
+  font-size: 26px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.booked-lessons p {
+  font-size: 26px;
+  line-height: 1.4;
+  opacity: .7;
+  margin-bottom: 0;
+  margin-top: 8px;
+}
+
+.booked-lessons .infos-booked-lessons {
+  padding: 16px;
+}
