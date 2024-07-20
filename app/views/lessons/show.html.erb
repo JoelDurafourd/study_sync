@@ -5,9 +5,9 @@
     </div>
     <div class="card-body-container d-flex">
       <% if @lesson.user.photo.present? %>
-        <%= link_to cl_image_tag(@lesson.user.photo.key, class: "user-photo", alt: "User Avatar"), user_path(@lesson.user) %>
+        <%= link_to cl_image_tag(@lesson.user.photo.key, class: "user-photo", alt: "User Avatar")%>
       <% else %>
-        <%= link_to image_tag("default_avatar.png", class: "user-photo", alt: "Default Avatar"), user_path(@lesson.user) %>
+        <%= link_to image_tag("default_avatar.png", class: "user-photo", alt: "Default Avatar") %>
       <% end %>
       <div class="card-body">
         <h5 class="card-title"><%= @lesson.title %></h5>

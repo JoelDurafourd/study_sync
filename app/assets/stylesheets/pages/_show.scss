@@ -26,20 +26,28 @@
     gap: 10px;
     margin-top: 20px;
   }
+  .card-body {
+    font-size: 20px;
+  }
 
   .card-body-container {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 20px;
+    padding:20px;
     .user-photo {
-      width: 500px;
-      height: 500px;
+      width: 400px;
+      height: 400px;
     }
   }
 
   .footer {
     background-color: white;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
 
     .social-buttons {
       display: flex;
