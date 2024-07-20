@@ -1,5 +1,5 @@
 <div class="show-page">
-  <div class="card text-center">
+  <div class="card card-lesson text-center">
     <div class="card-header">
       <h1>LESSON CONTENT</h1>
     </div>
@@ -10,11 +10,11 @@
         <%= link_to image_tag("default_avatar.png", class: "user-photo", alt: "Default Avatar") %>
       <% end %>
       <div class="card-body">
-        <h5 class="card-title"><%= @lesson.title %></h5>
-        <h6 class="card-subtitle mb-2 text-muted">Category: <%= @lesson.category %></h6>
+        <h5 class="card-title"><b><%= @lesson.title %></b></h5>
+        <p class="card-text">User: <%= @lesson.user.email %></p>
+        <p class="card-text">Category: <%= @lesson.category %></p>
         <p class="card-text">Description: <%= @lesson.description %></p>
         <p class="card-text">Price: <%= @lesson.price %></p>
-        <p class="card-text">User: <%= @lesson.user.email %></p>
         <% if @lesson.photos.present? %>
           <% @lesson.photos.each do |photo| %>
             <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill, class: "img-thumbnail" %>
