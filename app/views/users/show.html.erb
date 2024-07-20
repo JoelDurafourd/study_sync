@@ -1,18 +1,27 @@
-<div class="user_banner" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('<%= asset_path('bookings_index_user_page.png') %>');">
+<div class="user_banner" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('<%= asset_path('bookings_index_user_page.jpg') %>');">
   <div class="container">
     <center><h1>My Bookings Page</h1>
     <p>Review your lessons, booked lessons, and statuses.</p></center>
   </div>
 </div>
 
-<h1>user profile connected</h1>
 
-<h2>Email: <%= @user.email %></h2>
-<h2>First Name: <%= @user.first_name %></h2>
-<h2>Last Name: <%= @user.last_name %></h2>
-<h2>Description: <%= @user.description %></h2>
 
-<h1>teaching lessons</h1>
+<div class="user_h1"><h1>user profile connected</h1></div>
+
+
+<div class="user_page">
+  <img src="default_avatar.png" />
+  <div class="card-product-infos">
+<h2><strong>Email:</strong> <%= @user.email %></h2>
+<h2><strong>First Name:</strong> <%= @user.first_name %></h2>
+<h2><strong>Last Name:</strong> <%= @user.last_name %></h2>
+<h2><strong>Description:</strong> <%= @user.description %></h2>
+  </div>
+</div>
+
+
+<div class="user_h1"><h1>teaching lessons</h1></div>
   <% @user.lessons.each do |lesson| %>
     <a href="<%= lesson_path(lesson) %>">
     <div class="card-category">
@@ -24,7 +33,11 @@
     </div>
     </a>
   <% end %>
-<h1>booked lessons</h1>
+
+
+
+
+<div class="user_h1"><h1>booked lessons</h1></div>
   <% @user.bookings.each do |booking| %>
     <a href="<%= lesson_booking_path(booking.lesson, booking) %>">
     <div class="card-category">
@@ -32,10 +45,18 @@
     <h2>start_date <%= booking.start_date %></h2>
     <h2>end_date <%= booking.end_date %></h2>
     <h2>status <%= booking.status %></h2>
+    <h2>    <% if booking.user == current_user %>
+      <%= link_to "Cancel booking?", booking_path(booking), data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to cancel?"} %>
+    <% end %></h2>
     </div>
     </a>
   <% end %>
-  <h1>booking requests</h1>
+
+
+
+
+
+  <div class="user_h1"><h1>booking requests</h1></div>
   <% @user.booking_requests.each do |booking| %>
     <a href="<%= booking_path(booking) %>">
     <div class="card-category">

@@ -24,6 +24,7 @@
   margin: 10px;
 }
 
+
 body {
   padding-top: 90px;
 }
@@ -47,4 +48,41 @@ body {
   color: white;
   opacity: .7;
   text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+}
+
+.user_h1 {
+background-color: #b0d1ff;
+}
+
+.user_page {
+  overflow: hidden;
+  height: 250px;
+  // width: 700px;
+  background: white;
+  box-shadow: 0 0 5px rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+}
+
+.user_page img {
+  height: 100%;
+  width: 120px;
+  object-fit: cover;
+}
+
+.user_page h2 {
+  font-size: 26px;
+  margin: 18px;
+}
+
+.user_page p {
+  font-size: 12px;
+  line-height: 1.4;
+  opacity: .7;
+  margin-bottom: 0;
+  margin-top: 8px;
+}
+
+.user_page .user_page-infos {
+  padding: 20px;
 }
