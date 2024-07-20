@@ -4,6 +4,8 @@ class LessonsController < ApplicationController
   def index
     if params[:query].present?
       @lessons = Lesson.search_by_category_description_title(params[:query])
+    elsif params[:category].present?
+      @lessons = Lesson.search_by_category_description_title(params[:category])
     else
       @lessons = Lesson.all
     end
