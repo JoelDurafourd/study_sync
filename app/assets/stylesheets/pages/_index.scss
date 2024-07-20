@@ -238,3 +238,245 @@ ul {
 .recommendation-lesson {
   background-color: #B0D1FF;
 }
+.banner {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 20px;
+
+  .banner-image {
+    width: 100%;
+    height: 700px;
+  }
+
+  @media (min-width: 768px) {
+    .banner-image {
+      height: 600px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .banner-image {
+      height: 600px;
+    }
+  }
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+.card {
+  margin: 10px;
+  text-align: center;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.categories-container {
+  background-color: #B0D1FF;
+  padding: 20px 0;
+}
+
+.categories {
+  margin-bottom: 20px;
+  text-align: center;
+  color: #ffffff;
+}
+
+.categories h1 {
+  margin-bottom: 20px;
+}
+
+ul {
+  padding: 0;
+  list-style: none;
+
+  li {
+    margin: 0 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
+    .category-icon {
+      margin-bottom: 5px;
+      width: 50px;
+      height: 50px;
+    }
+
+    .category-name {
+      color: #4C4D4F;
+      font-weight: bold;
+    }
+  }
+}
+
+.carousel {
+  margin-bottom: 20px;
+
+  .carousel-indicators li {
+    background-color: #000;
+  }
+
+  .carousel-control-prev-icon,
+  .carousel-control-next-icon {
+    background-color: #000;
+  }
+
+  .carousel-item img {
+    height: 600px;
+    object-fit: cover;
+  }
+}
+
+.category-name {
+  color: gray;
+}
+
+.search-bar-container {
+  margin: 20px 0;
+  display: flex;
+  justify-content: center;
+}
+
+.search-bar {
+  display: flex;
+  flex-wrap: nowrap;
+  width: 100%;
+  max-width: 1000px;
+  align-items: center;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 40px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+}
+
+.search-form {
+  display: flex;
+  width: 100%;
+  align-items: center;
+
+  .search-input {
+    flex: 1 1 50%;
+    margin-right: 20px;
+    margin-left: 10px;
+    display: flex;
+    flex-direction: column;
+
+    p {
+      margin-bottom: 5px;
+    }
+
+    input {
+      width: 100%;
+      border: 1px solid #ccc;
+      padding: 10px 15px;
+      font-size: 1rem;
+      outline: none;
+      border-radius: 5px;
+
+      &:focus {
+        border: 1px solid #007bff;
+        box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+      }
+    }
+  }
+
+  .search-category {
+    flex: 1 1 40%;
+    margin-right: 10px;
+    padding-left: 10px;
+    display: flex;
+    flex-direction: column;
+    border-left: #9a9a9a solid;
+
+    p {
+      margin-bottom: 5px;
+    }
+
+    select {
+      width: 100%;
+      border: 1px solid #ccc;
+      padding: 10px 15px;
+      font-size: 1rem;
+      outline: none;
+      border-radius: 5px;
+
+      &:focus {
+        border: 1px solid #007bff;
+        box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+      }
+    }
+  }
+
+  .search-button {
+    flex: 0 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .btn-search {
+      width: 70px;
+      height: 70px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0;
+      color: #ffffff;
+      background-color: #FF8C8C;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #f4afaf;
+      }
+    }
+  }
+}
+
+.carousel {
+  margin-bottom: 20px;
+
+  .carousel-indicators li {
+    background-color: #000;
+  }
+
+  .carousel-control-prev-icon,
+  .carousel-control-next-icon {
+    background-color: #000;
+  }
+
+  .carousel-item img {
+    height: 600px;
+    object-fit: cover;
+  }
+}
+
+.category-name {
+  color: gray;
+}
+
+.available-lesson,
+.recommendation-lesson {
+  text-align: center;
+  padding: 20px;
+}
+
+.available-lesson .card-container,
+.recommendation-lesson .card-container {
+  justify-content: center;
+}
+
+.recommendation-lesson {
+  background-color: #B0D1FF;
+  color: #ffffff;
+}
