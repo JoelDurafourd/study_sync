@@ -1,15 +1,56 @@
-<h1><%= @lesson.title %></h1>
-<h2>category <%= @lesson.category %></h2>
-<h2>description <%= @lesson.description %></h2>
-<h2>price <%= @lesson.price %></h2>
-<h2>user <%= @lesson.user.email %></h2>
-<% if @lesson.photos.present? %>
-    <% @lesson.photos.each do |photo| %>
-      <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
-    <% end %>
-  <% end %>
-<%= link_to "Book this lesson", new_lesson_booking_path(@lesson)%>
-<%= link_to "Back to lessons", "/lessons", class: "nav-button col-12"%>
-<% if @lesson.user == current_user %>
-  <%= link_to "Edit this lesson", edit_lesson_path(@lesson)%>
-<% end %>
+<div class="show-page">
+  <div class="card card-lesson text-center">
+    <div class="card-header">
+      <h1>LESSON CONTENT</h1>
+    </div>
+    <div class="card-body-container d-flex">
+      <% if @lesson.user.photo.present? %>
+        <%= link_to cl_image_tag(@lesson.user.photo.key, class: "user-photo", alt: "User Avatar")%>
+      <% else %>
+        <%= link_to image_tag("default_avatar.png", class: "user-photo", alt: "Default Avatar") %>
+      <% end %>
+      <div class="card-body">
+        <h5 class="card-title"><b><%= @lesson.title %></b></h5>
+        <p class="card-text">User: <%= @lesson.user.email %></p>
+        <p class="card-text">Category: <%= @lesson.category %></p>
+        <p class="card-text">Description: <%= @lesson.description %></p>
+        <p class="card-text">Price: <%= @lesson.price %></p>
+        <% if @lesson.photos.present? %>
+          <% @lesson.photos.each do |photo| %>
+            <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill, class: "img-thumbnail" %>
+          <% end %>
+        <% end %>
+        <div class="btn-group" role="group">
+          <a href="<%= new_lesson_booking_path(@lesson) %>" class="btn btn-primary">Book this lesson</a>
+          <a href="/lessons" class="btn btn-secondary">Back to lessons</a>
+          <% if @lesson.user == current_user %>
+            <a href="<%= edit_lesson_path(@lesson) %>" class="btn btn-warning">Edit this lesson</a>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="card-footer text-muted">
+    </div>
+  </div>
+
+  <footer class="text-center text-lg-start" style="background-color: white;">
+    <div class="container d-flex justify-content-center py-5">
+      <button type="button" class="btn-sns btn-primary btn-lg btn-floating mx-2" style="background-color: #f4afaf;">
+        <i class="fab fa-facebook-f"></i>
+      </button>
+      <button type="button" class="btn-sns btn-primary btn-lg btn-floating mx-2" style="background-color: #f4afaf;">
+        <i class="fab fa-youtube"></i>
+      </button>
+      <button type="button" class="btn-sns btn-primary btn-lg btn-floating mx-2" style="background-color: #f4afaf;">
+        <i class="fab fa-instagram"></i>
+      </button>
+      <button type="button" class="btn-sns btn-primary btn-lg btn-floating mx-2" style="background-color: #f4afaf;">
+        <i class="fab fa-twitter"></i>
+      </button>
+    </div>
+
+    <div class="text-center" style="background-color: white; color: black;">
+      © 2024 Copyright: STUDYSYNC
+    </div>
+  </footer>
+</div>
