@@ -5,6 +5,9 @@
     </div>
 
 <% if @booking.lesson.user == current_user %>
-<%= link_to('Accept', booking_accept_path(@booking)) %>
-<%= link_to('Decline', booking_decline_path(@booking)) %>
+
+  <% if @booking.status == "pending" %>
+    <%= link_to('Accept', booking_accept_path(@booking)) %>
+    <%= link_to('Decline', booking_decline_path(@booking)) %>
+  <% end %>
 <% end %>
