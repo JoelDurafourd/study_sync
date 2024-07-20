@@ -7,11 +7,15 @@
 
 
 
-<div class="user_h1"><h1>user profile connected</h1></div>
+<div class="user_h1"><h1>User's Profile</h1></div>
 
 
 <div class="user_page">
-  <img src="default_avatar.png" />
+  <% if @user.photo.present? %>
+        <%= link_to cl_image_tag(@user.photo.key, class: "card-img-top", alt: "User Avatar"), user_path(@user) %>
+      <% else %>
+        <%= link_to image_tag("default_avatar.png", class: "card-img-top", alt: "Default Avatar"), user_path(@user) %>
+      <% end %>
   <div class="card-product-infos">
 <h2><strong>Email:</strong> <%= @user.email %></h2>
 <h2><strong>First Name:</strong> <%= @user.first_name %></h2>
@@ -21,7 +25,7 @@
 </div>
 
 
-<div class="user_h1"><h1>teaching lessons</h1></div>
+<div class="user_h1"><h1>User's Lessons</h1></div>
   <% @user.lessons.each do |lesson| %>
     <a href="<%= lesson_path(lesson) %>">
     <div class="card-category">
@@ -37,7 +41,7 @@
 
 
 
-<div class="user_h1"><h1>booked lessons</h1></div>
+<div class="user_h1"><h1>Booked Lessons</h1></div>
   <% @user.bookings.each do |booking| %>
     <a href="<%= lesson_booking_path(booking.lesson, booking) %>">
     <div class="card-category">
@@ -56,7 +60,7 @@
 
 
 
-  <div class="user_h1"><h1>booking requests</h1></div>
+  <div class="user_h1"><h1>Request Statuses</h1></div>
   <% @user.booking_requests.each do |booking| %>
     <a href="<%= booking_path(booking) %>">
     <div class="card-category">

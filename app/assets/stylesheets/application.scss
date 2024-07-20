@@ -51,7 +51,9 @@ body {
 }
 
 .user_h1 {
+color: #4b4d4f;
 background-color: #b0d1ff;
+padding: 10px;
 }
 
 .user_page {
@@ -65,8 +67,8 @@ background-color: #b0d1ff;
 }
 
 .user_page img {
-  height: 100%;
-  width: 120px;
+  height: 250px;
+  width: 250px;
   object-fit: cover;
 }
 
