@@ -7,9 +7,10 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
-require 'faker'
 require 'uri'
 
+
+# WARNING, running seeder will destroy all database assets. 
 puts "Destroying Bookings...!"
 Booking.destroy_all
 puts "Destroying Lessons...!"
