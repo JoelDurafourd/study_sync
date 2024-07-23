@@ -1,7 +1,7 @@
 <div class="show-page">
   <div class="card card-lesson text-center">
     <div class="card-header">
-      <h1>LESSON CONTENT</h1>
+         <h1 class="card-title"><b><%= @lesson.title %></b></h1>
     </div>
     <div class="card-body-container d-flex">
       <% if @lesson.user.photo.present? %>
@@ -9,24 +9,27 @@
       <% else %>
         <%= link_to image_tag("default_avatar.png", class: "user-photo", alt: "Default Avatar") %>
       <% end %>
-      <div class="card-body">
-        <h5 class="card-title"><b><%= @lesson.title %></b></h5>
-        <p class="card-text">User: <%= @lesson.user.email %></p>
-        <p class="card-text">Category: <%= @lesson.category %></p>
-        <p class="card-text">Description: <%= @lesson.description %></p>
-        <p class="card-text">Price: <%= @lesson.price %></p>
+      <div class="card-body d-flex">
+        <div class="text-content">
+          <p class="card-text"><b>User:</b> <%= @lesson.user.email %></p>
+          <p class="card-text"><b>Category:</b> <%= @lesson.category %></p>
+          <p class="card-text"><b>Description:</b> <%= @lesson.description %></p>
+        </div>
+        <div class="price-content">
+          <p class="card-text"><b>Price:</b> <%= @lesson.price %></p>
+        </div>
         <% if @lesson.photos.present? %>
           <% @lesson.photos.each do |photo| %>
             <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill, class: "img-thumbnail" %>
           <% end %>
         <% end %>
         <div class="btn-group" role="group">
-          <a href="<%= new_lesson_booking_path(@lesson) %>" class="btn btn-primary">Book this lesson</a>
-          <a href="/lessons" class="btn btn-secondary">Back to lessons</a>
-          <% if @lesson.user == current_user %>
-            <a href="<%= edit_lesson_path(@lesson) %>" class="btn btn-warning">Edit this lesson</a>
-          <% end %>
-        </div>
+      <%= link_to "Book this lesson", new_lesson_booking_path(@lesson), class: "btn btn-outline-warning rounded-pill" %>
+      <%= link_to "Back to lessons", "/lessons", class: "btn btn-outline-bof rounded-pill" %>
+      <% if @lesson.user == current_user %>
+        <%= link_to "Edit this lesson", edit_lesson_path(@lesson), class: "btn btn-outline-warning rounded-pill" %>
+      <% end %>
+    </div>
       </div>
     </div>
     <div class="card-footer text-muted">
