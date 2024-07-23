@@ -70,11 +70,12 @@
 
   <div class="container">
             <div class="row people">
+                                <% @user.booking_requests.each do |booking| %>
                 <div class="card-body">
 
                     <div>
 
-                    <% @user.booking_requests.each do |booking| %>
+
                     <% if @user.photo.present? %>
         <%= link_to cl_image_tag(@user.photo.key, class: "rounded-circle", alt: "User Avatar"), booking_path(booking) %>
       <% else %>
@@ -84,18 +85,12 @@
                         <p> <strong> Start Date:</strong> <%= booking.start_date %></p>
                         <p> <strong> End Date:</strong> <%= booking.end_date %></p>
                         <p> <strong> Status:</strong> <%= booking.status %></p>
-                        <div><button type="button" class="btn btn-success">ACCEPT</button> <button type="button" class="btn btn-danger position-absolute">DECLINE</button>
+                        <div><button type="button" class="btn btn-success">ACCEPT</button> <button type="button" class="btn btn-danger position-absolute">DECLINE</button></div>
 
-
-
-
-
-                    </div>
-                    <% end %>
                     </div>
 
                 </div>
-
+                    <% end %>
                     </div>
                 </div>
 
