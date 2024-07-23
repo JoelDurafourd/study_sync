@@ -16,7 +16,7 @@
           <p class="card-text"><b>Description:</b> <%= @lesson.description %></p>
         </div>
         <div class="price-content">
-          <p class="card-text"><b>Price:</b> <%= @lesson.price %></p>
+          <p class="card-text"><b>Price:</b> <%= number_to_currency(@lesson.price, {unit: '$', precision: 0}) %></p>
         </div>
         <% if @lesson.photos.present? %>
           <% @lesson.photos.each do |photo| %>

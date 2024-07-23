@@ -94,7 +94,7 @@
           <h5 class="card-title"><b><%= lesson.title %></b></h5>
           <p class="card-text">Category: <%= lesson.category %></p>
           <p class="card-text">Description: <%= lesson.description %></p>
-          <p class="card-text">Price: <%= lesson.price %></p>
+          <p class="card-text">Price: <%= number_to_currency(lesson.price, {unit: '$', precision: 0}) %></p>
           <p class="card-text">User: <%= lesson.user.email %></p>
           <a href="<%= lesson_path(lesson) %>" class="btn btn-primary">Go to Lesson</a>
         </div>
@@ -120,7 +120,7 @@
             <h5 class="card-title"><b><%= lesson.title %></b></h5>
             <p class="card-text">Category: <%= lesson.category %></p>
             <p class="card-text">Description: <%= lesson.description %></p>
-            <p class="card-text">Price: <%= lesson.price %></p>
+            <p class="card-text">Price: <%= number_to_currency(lesson.price, {unit: '$', precision: 0}) %></p>
             <p class="card-text">User: <%= lesson.user.email %></p>
             <a href="<%= lesson_path(lesson) %>" class="btn btn-primary">Go to Lesson</a>
           </div>
