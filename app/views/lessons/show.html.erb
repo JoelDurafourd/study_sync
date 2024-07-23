@@ -14,7 +14,7 @@
         <p class="card-text">User: <%= @lesson.user.email %></p>
         <p class="card-text">Category: <%= @lesson.category %></p>
         <p class="card-text">Description: <%= @lesson.description %></p>
-        <p class="card-text">Price: <%= @lesson.price %></p>
+        <p class="card-text">Price: <%= number_to_currency(@lesson.price, {unit: '$', precision: 0}) %></p>
         <% if @lesson.photos.present? %>
           <% @lesson.photos.each do |photo| %>
             <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill, class: "img-thumbnail" %>
