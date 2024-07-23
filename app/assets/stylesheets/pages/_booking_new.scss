@@ -1,3 +1,8 @@
+.booking-form-container {
+  margin-top: 50px;
+  margin-bottom: 20px;
+}
+
 .booking-form {
   max-width: 600px;
   margin: 0 auto;
@@ -40,13 +45,13 @@
   .btn-secondary {
     background-color: #6c757d;
     color: white;
-    padding: 10px;
+    padding: 20px;
     padding-right: 20px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
     text-align: center;
-    margin-top: 10px;
+    margin-top: 50px;
 
     &:hover {
       background-color: #565e64;
@@ -78,4 +83,13 @@
       }
     }
   }
+}
+.datepicker {
+  min-width: 80px;
+}
+
+select.ui-datepicker-year, select.ui-datepicker-month {
+  width: auto;
+  min-width: 60px;
+  padding: 5px;
 }
