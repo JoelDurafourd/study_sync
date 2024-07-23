@@ -73,6 +73,38 @@
   </div>
 </div>
 
+
+<% if current_user && params[:query].present? == false && params[:category].present? == false %>
+  <% if current_user.bookings.present? %>
+    <% last_booking_category = current_user.bookings.last.lesson.category %>
+    <% all_lessons = Lesson.all %>
+    <% matching_lessons_by_category = all_lessons.select { |lesson| lesson.category == last_booking_category } %>
+
+  <div class="recommendation-lesson">
+    <h1>RECOMMENDATIONS</h1>
+  <div class="card-container">
+
+    <% matching_lessons_by_category.first(5).each do |lesson| %>
+      <div class="card" style="width: 18rem;">
+        <% if lesson.user.photo.present? %>
+          <%= link_to cl_image_tag(lesson.user.photo.key, class: "card-img-top", alt: "User Avatar"), user_path(lesson.user) %>
+        <% else %>
+          <%= link_to image_tag("default_avatar.png", class: "card-img-top", alt: "Default Avatar"), user_path(lesson.user) %>
+        <% end %>
+        <div class="card-body">
+          <h5 class="card-title"><b><%= lesson.title %></b></h5>
+          <p class="card-text">Category: <%= lesson.category %></p>
+          <p class="card-text">Description: <%= lesson.description %></p>
+          <p class="card-text">Price: <%= number_to_currency(lesson.price, {unit: '$', precision: 0}) %></p>
+          <p class="card-text">User: <%= lesson.user.email %></p>
+          <%= link_to "Go to Lesson", lesson_path(lesson), class: "btn btn-outline-warning rounded-pill" %>
+        </div>
+      </div>
+    <% end %>
+    <% end %>
+  </div></div>
+<% end %>
+
 <div class="available-lesson">
   <h1>AVAILABLE LESSONS</h1>
 <div class="card-container">
@@ -90,36 +122,14 @@
             <h5 class="card-title"><b><%= lesson.title %></b></h5>
             <p class="card-text">Category: <%= lesson.category %></p>
             <p class="card-text">Description: <%= lesson.description %></p>
-            <p class="card-text">Price: <%= lesson.price %></p>
+            <p class="card-text">Price: <%= number_to_currency(lesson.price, {unit: '$', precision: 0}) %></p>
             <p class="card-text">User: <%= lesson.user.email %></p>
-            <a href="<%= lesson_path(lesson) %>" class="btn btn-primary">Go to Lesson</a>
+            <%= link_to "Go to Lesson", lesson_path(lesson), class: "btn btn-outline-warning rounded-pill" %>
           </div>
         </div>
       <% end %>
   <% end %>
 </div>
-</div>
-
-<div class="recommendation-lesson">
-  <h1>RECOMMENDATION</h1>
-<div class="card-container">
-  <% @lessons.each do |lesson| %>
-    <div class="card" style="width: 18rem;">
-      <% if lesson.user.photo.present? %>
-        <%= link_to cl_image_tag(lesson.user.photo.key, class: "card-img-top", alt: "User Avatar"), user_path(lesson.user) %>
-      <% else %>
-        <%= link_to image_tag("default_avatar.png", class: "card-img-top", alt: "Default Avatar"), user_path(lesson.user) %>
-      <% end %>
-      <div class="card-body">
-        <h5 class="card-title"><b><%= lesson.title %></b></h5>
-        <p class="card-text">Category: <%= lesson.category %></p>
-        <p class="card-text">Description: <%= lesson.description %></p>
-        <p class="card-text">Price: <%= lesson.price %></p>
-        <p class="card-text">User: <%= lesson.user.email %></p>
-        <a href="<%= lesson_path(lesson) %>" class="btn btn-primary">Go to Lesson</a>
-      </div>
-    </div>
-  <% end %>
 </div>
 
  <footer class="text-center text-lg-start" style="background-color: white;">
