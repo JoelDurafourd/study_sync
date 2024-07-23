@@ -79,10 +79,11 @@
     <% last_booking_category = current_user.bookings.last.lesson.category %>
     <% all_lessons = Lesson.all %>
     <% matching_lessons_by_category = all_lessons.select { |lesson| lesson.category == last_booking_category } %>
-  <% end %>
+
   <div class="recommendation-lesson">
     <h1>RECOMMENDATIONS</h1>
   <div class="card-container">
+
     <% matching_lessons_by_category.first(5).each do |lesson| %>
       <div class="card" style="width: 18rem;">
         <% if lesson.user.photo.present? %>
@@ -99,6 +100,7 @@
           <%= link_to "Go to Lesson", lesson_path(lesson), class: "btn btn-outline-warning rounded-pill" %>
         </div>
       </div>
+    <% end %>
     <% end %>
   </div></div>
 <% end %>
