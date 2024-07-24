@@ -63,7 +63,7 @@ class BookingsController < ApplicationController
     # change the bookings status to accepted, redirect to the booking path
     @booking = Booking.find(params[:booking_id])
     if @booking.update(status: :accepted)
-      redirect_to booking_path(@booking)
+      redirect_to user_path(@booking.lesson.user)
     end
   end
 
@@ -71,7 +71,7 @@ class BookingsController < ApplicationController
     # change the bookings status to declined, redirect to the booking path
     @booking = Booking.find(params[:booking_id])
     if @booking.update(status: :declined)
-      redirect_to booking_path(@booking)
+      redirect_to user_path(@booking.lesson.user)
     end
   end
 
