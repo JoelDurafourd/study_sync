@@ -68,7 +68,7 @@
 
 
   <div class="user_h1"><h1>Request Statuses</h1></div>
-  <% @user.booking_requests.each do |booking| %>
+  <% @user.bookings.each do |booking| %>
     <a href="<%= booking_path(booking) %>">
     <div class="card-category">
     <h1><%= booking.lesson.title %></h1>
