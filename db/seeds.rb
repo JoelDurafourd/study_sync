@@ -10,7 +10,7 @@
 require 'uri'
 
 
-# WARNING, running seeder will destroy all database assets. 
+# WARNING, running seeder will destroy all database assets.
 puts "Destroying Bookings...!"
 Booking.destroy_all
 puts "Destroying Lessons...!"
@@ -117,7 +117,7 @@ lesson2 = user2.lessons.create!(
 puts "Created #{lesson2}!"
 
 lesson3 = user3.lessons.create!(
-  category: "Technology",
+  category: "Programing",
   description: "Introduction to programming with Python.",
   title: "Python Programming Fundamentals",
   price: 49.99
@@ -157,7 +157,7 @@ lesson7 = user7.lessons.create!(
 puts "Created #{lesson7}!"
 
 lesson8 = user8.lessons.create!(
-  category: "Yoga",
+  category: "Fitness",
   description: "Learn yoga poses and techniques for a balanced lifestyle.",
   title: "Yoga for Wellness",
   price: 49.99
@@ -189,7 +189,7 @@ lesson11 = user11.lessons.create!(
 puts "Created #{lesson11}!"
 
 lesson12 = user12.lessons.create!(
-  category: "Design",
+  category: "Art",
   description: "Learn graphic design principles and create visual stories.",
   title: "Graphic Design Essentials",
   price: 54.99
@@ -197,7 +197,7 @@ lesson12 = user12.lessons.create!(
 puts "Created #{lesson12}!"
 
 lesson13 = user13.lessons.create!(
-  category: "Food",
+  category: "Cooking",
   description: "Explore culinary delights and master cooking techniques.",
   title: "Culinary Delights",
   price: 59.99
@@ -221,7 +221,7 @@ lesson15 = user15.lessons.create!(
 puts "Created #{lesson15}!"
 
 lesson16 = user16.lessons.create!(
-  category: "Environment",
+  category: "Nature",
   description: "Promote sustainability and protect our environment.",
   title: "Environmental Awareness",
   price: 29.99
@@ -245,7 +245,7 @@ lesson18 = user18.lessons.create!(
 puts "Created #{lesson18}!"
 
 lesson19 = user19.lessons.create!(
-  category: "Business",
+  category: "Marketing",
   description: "Start and grow successful businesses with strategic insights.",
   title: "Startup Success",
   price: 89.99
