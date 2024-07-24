@@ -32,11 +32,11 @@ class Lesson < ApplicationRecord
   # the categories code is frozen so that both the program or users cannot modify categories in production.
   CATEGORIES = [
     "Programming", "Science", "Mathematics", "Music", "Languages", "Cooking",
-    "Technology", "Fitness", "Travel", "Art", "Nature", "Tours", "Yoga",
-    "Photography", "History", "Literature", "Design", "Food", "Marketing",
-    "Film", "Environment", "Fashion", "Business"
+    "Fitness", "Travel", "Art", "Nature", "Yoga",
+    "Photography", "History", "Literature", "Marketing",
+    "Film", "Fashion"
     ].freeze
 
-    # validates the category inclusion with error message, though it's obsolete as user cannot input a category themselves. 
+    # validates the category inclusion with error message, though it's obsolete as user cannot input a category themselves.
     validates :category, inclusion: { in: CATEGORIES, message: "%{value} is not a valid category" }
 end
