@@ -25,7 +25,8 @@
 </div>
 
 
-<div class="user_h1"><h1>User's Lessons</h1></div>
+<% if @user.lessons.present? %>
+<div class="user_h1"><h1>User's Lessons they are teaching</h1></div>
   <% @user.lessons.each do |lesson| %>
     <a href="<%= lesson_path(lesson) %>">
 
@@ -37,15 +38,36 @@
     <h2>user <%= lesson.user.email %></h2>
     </div>
     </a>
+      <div class="user_h1"><h1>above lessons bookings statuses</h1></div>
+    <p>
+      <div class="container">
+        <div class="row people">
+          <% lesson.bookings.each do |booking| %>
+            <div class="card-body col-3">
+              <div>
+                <% if @user.photo.present? %>
+                  <%= link_to cl_image_tag(@user.photo.key, class: "rounded-circle", alt: "User Avatar"), booking_path(booking) %>
+                <% else %>
+                  <%= link_to image_tag("default_avatar.png", class: "rounded-circle", alt: "Default Avatar"), booking_path(booking) %>
+                <% end %>
+                    <h3 class="name"><%= booking.lesson.title %></h3>
+                    <p> <strong> Start Date:</strong> <%= booking.start_date %></p>
+                    <p> <strong> End Date:</strong> <%= booking.end_date %></p>
+                    <p> <strong> Status:</strong> <%= booking.status %></p>
+                    <div><button type="button" class="btn btn-success">ACCEPT</button> <button type="button" class="btn btn-danger position-absolute">DECLINE</button></div>
+                  </div>
+                </div>
+                  <% end %>
+                  </div>
+              </div>
   <% end %>
+<% end %>
 
 
-
-
-<div class="user_h1"><h1>Booked Lessons</h1></div>
+<div class="user_h1"><h1>My Booked Lessons</h1></div>
   <% @user.bookings.each do |booking| %>
     <div class="booked-lessons">
-  <% if @user.photo.present? %>
+      <% if @user.photo.present? %>
         <%= link_to cl_image_tag(@user.photo.key, class: "card-img-top", alt: "User Avatar"), user_path(@user) %>
       <% else %>
         <%= link_to image_tag("default_avatar.png", class: "card-img-top", alt: "Default Avatar"), user_path(@user) %>
@@ -62,52 +84,3 @@
     </div>
     </div>
   <% end %>
-
-
-
-  <div class="user_h1"><h1>Request Statuses</h1></div>
-<p>
-
-  <div class="container">
-            <div class="row people">
-                                <% @user.booking_requests.each do |booking| %>
-                <div class="card-body">
-
-                    <div>
-
-
-                    <% if @user.photo.present? %>
-        <%= link_to cl_image_tag(@user.photo.key, class: "rounded-circle", alt: "User Avatar"), booking_path(booking) %>
-      <% else %>
-        <%= link_to image_tag("default_avatar.png", class: "rounded-circle", alt: "Default Avatar"), booking_path(booking) %>
-      <% end %>
-                        <h3 class="name"><%= booking.lesson.title %></h3>
-                        <p> <strong> Start Date:</strong> <%= booking.start_date %></p>
-                        <p> <strong> End Date:</strong> <%= booking.end_date %></p>
-                        <p> <strong> Status:</strong> <%= booking.status %></p>
-                        <div><button type="button" class="btn btn-success">ACCEPT</button> <button type="button" class="btn btn-danger position-absolute">DECLINE</button></div>
-
-                    </div>
-
-                </div>
-                    <% end %>
-                    </div>
-                </div>
-
-
-
-
-
-  <div class="user_h1"><h1>Request Statuses</h1></div>
-  <% @user.bookings.each do |booking| %>
-    <a href="<%= booking_path(booking) %>">
-    <div class="card-category">
-    <h1><%= booking.lesson.title %></h1>
-    <h2>start_date <%= booking.start_date %></h2>
-    <h2>end_date <%= booking.end_date %></h2>
-    <h2>status <%= booking.status %></h2>
-    </div>
-    </a>
-  <% end %>
-
-<%= link_to "Back to lessons", "/lessons", class: "nav-button col-12"%>
