@@ -83,7 +83,7 @@
 
 
 <div class="user_h1"><h1>My Booked Lessons</h1></div>
-  <% @user.bookings.each do |booking| %>
+  <% @bookings.each do |booking| %>
     <div class="booked-lessons">
       <% if @user.photo.present? %>
         <%= link_to cl_image_tag(@user.photo.key, class: "card-img-top", alt: "User Avatar"), user_path(@user) %>

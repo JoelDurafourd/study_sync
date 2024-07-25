@@ -16,6 +16,40 @@
 @import "pages/user";
 @import "pages/booking_page";
 
+.login-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 20px;
+
+  h2{
+    color: #3a89f8;
+  }
+
+  form {
+    width: 100%;
+    max-width: 400px; /* Adjust the width as needed */
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+
+    .form-inputs {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .form-actions {
+      display: flex;
+      justify-content: center;
+      margin-top: 10px;
+    }
+  }
+
+}
+
+
 .card-category {
   height: 180px;
   display: flex;
@@ -32,3 +66,4 @@
 body {
   padding-top: 90px;
 }
+
