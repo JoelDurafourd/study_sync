@@ -36,7 +36,11 @@
       </div>
       <div class="search-category">
               <p><b>Categories:</b></p>
-        <%= select_tag :category, options_for_select(['All Categories', 'Programming', 'Science', 'Mathematics', 'Music', 'Foreign Languages'], selected: params[:category]), class: "form-control" %>
+        <%= select_tag :category, options_for_select(['All Categories',
+    "Programming", "Science", "Mathematics", "Music", "Languages", "Cooking",
+    "Fitness", "Travel", "Art", "Nature", "Yoga",
+    "Photography", "History", "Literature", "Marketing",
+    "Film", "Fashion"], selected: params[:category]), class: "form-control" %>
       </div>
       <div class="search-button">
         <%= submit_tag "Search", name: "", class: "btn-search" %>
