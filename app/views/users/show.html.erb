@@ -36,16 +36,15 @@
     <h2>description <%= lesson.description %></h2>
     <h2>price <%= lesson.price %></h2>
     <h2>✉: <%= lesson.user.email %></h2>
+          <% if lesson.user == current_user %>
+        <%= link_to "Edit this lesson", edit_lesson_path(lesson), class: "btn btn-outline-warning rounded-pill" %>
+      <% end %>
     </div>
     </a>
 
 
 
-
-
-
-
-      <div class="user_h1"><h1>Request Statuses</h1></div>
+      <div class="user_h1"><h1>Above Lesson's Request Statuses</h1></div>
     <p>
       <div class="container">
         <div class="row people">
