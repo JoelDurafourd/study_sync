@@ -28,7 +28,7 @@ class BookingsController < ApplicationController
     @booking.user = current_user
     if @booking.save
       # if the current booking is created succesfully, redirect to the lesson it was booked from
-      redirect_to lesson_path(@lesson), notice: 'Booking successfully created!'
+      redirect_to user_path(current_user), notice: 'Booking successfully created!'
     else
       # else display an error message
       render :new, status: :unprocessable_entity
