@@ -117,7 +117,7 @@ lesson2 = user2.lessons.create!(
 puts "Created #{lesson2}!"
 
 lesson3 = user3.lessons.create!(
-  category: "Programing",
+  category: "Programming",
   description: "Introduction to programming with Python.",
   title: "Python Programming Fundamentals",
   price: 49.99
