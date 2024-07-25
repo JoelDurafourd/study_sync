@@ -4,11 +4,11 @@
          <h1 class="card-title"><b><%= @lesson.title %></b></h1>
     </div>
     <div class="card-body-container d-flex">
-      <% if @lesson.user.photo.present? %>
-        <%= link_to cl_image_tag(@lesson.user.photo.key, class: "user-photo", alt: "User Avatar")%>
-      <% else %>
-        <%= link_to image_tag("default_avatar.png", class: "user-photo", alt: "Default Avatar") %>
-      <% end %>
+        <% if @lesson.photos.present? %>
+          <%= link_to cl_image_tag(@lesson.photos.first.key, class: "card-img-top"), user_path(@lesson.user) %>
+        <% else %>
+          <%= link_to image_tag("categories_default/#{@lesson.category.downcase}.jpg", class: "card-img-top", alt: "Default Avatar"), user_path(@lesson.user) %>
+        <% end %>
       <div class="card-body d-flex">
         <div class="text-content">
           <p class="card-text"><b>User:</b> <%= @lesson.user.email %></p>
