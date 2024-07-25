@@ -90,10 +90,10 @@
 
     <% matching_lessons_by_category.first(5).each do |lesson| %>
       <div class="card" style="width: 18rem;">
-        <% if lesson.user.photo.present? %>
-          <%= link_to cl_image_tag(lesson.user.photo.key, class: "card-img-top", alt: "User Avatar"), user_path(lesson.user) %>
+        <% if lesson.photos.present? %>
+          <%= link_to cl_image_tag(lesson.photos.first.key, class: "card-img-top"), user_path(lesson.user) %>
         <% else %>
-          <%= link_to image_tag("default_avatar.png", class: "card-img-top", alt: "Default Avatar"), user_path(lesson.user) %>
+          <%= link_to image_tag("categories_default/#{lesson.category.downcase}.jpg", class: "card-img-top", alt: "Default Avatar"), user_path(lesson.user) %>
         <% end %>
         <div class="card-body">
           <h5 class="card-title"><b><%= lesson.title %></b></h5>
@@ -117,11 +117,11 @@
   <% else %>
       <% @lessons.each do |lesson| %>
           <div class="card" style="width: 18rem;">
-          <% if lesson.user.photo.present? %>
-            <%= link_to cl_image_tag(lesson.user.photo.key, class: "card-img-top", alt: "User Avatar"), user_path(lesson.user) %>
-          <% else %>
-            <%= link_to image_tag("default_avatar.png", class: "card-img-top", alt: "Default Avatar"), user_path(lesson.user) %>
-          <% end %>
+        <% if lesson.photos.present? %>
+          <%= link_to cl_image_tag(lesson.photos.first.key, class: "card-img-top"), user_path(lesson.user) %>
+        <% else %>
+          <%= link_to image_tag("categories_default/#{lesson.category.downcase}.jpg", class: "card-img-top", alt: "Default Avatar"), user_path(lesson.user) %>
+        <% end %>
           <div class="card-body">
             <h5 class="card-title"><b><%= lesson.title %></b></h5>
             <p class="card-text">Category: <%= lesson.category %></p>
