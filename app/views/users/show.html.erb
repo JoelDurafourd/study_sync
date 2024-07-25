@@ -39,11 +39,12 @@
     <p class="card-text"><%= lesson.description %></p>
         <p class="card-text">$<%= lesson.price %></p>
         <p class="card-text">✉: <%= lesson.user.email %></p>
-                  <% if lesson.user == current_user %>
+
+  </div>
+    <div class="card-footer bg-transparent border-primary">                  <% if lesson.user == current_user %>
         <%= link_to "Edit This lesson", edit_lesson_path(lesson), class: "btn btn-outline-warning rounded-pill" %>
       <% end %>
-        <%= link_to "View This Lesson", lesson_path(lesson), class: "btn btn-outline-warning rounded-pill" %>
-  </div>
+        <%= link_to "View This Lesson", lesson_path(lesson), class: "btn btn-outline-warning rounded-pill" %></div>
 </div>
 
 
