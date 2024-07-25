@@ -36,6 +36,7 @@
     <h2>description <%= lesson.description %></h2>
     <h2>price <%= lesson.price %></h2>
     <h2>user <%= lesson.user.email %></h2>
+    <%= link_to "Cancel lesson?", lesson_path(lesson), data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to cancel?"} %>
     </div>
     </a>
       <div class="user_h1"><h1>above lessons bookings statuses</h1></div>
