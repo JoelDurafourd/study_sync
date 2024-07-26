@@ -17,7 +17,7 @@
         <%= link_to image_tag("default_avatar.png", class: "card-img-top", alt: "Default Avatar"), user_path(@user) %>
       <% end %>
   <div class="card-product-infos">
-<h2><strong>Email:</strong> <%= @user.email %></h2>
+<h2><strong>✉: </strong> <%= @user.email %></h2>
 <h2><strong>First Name:</strong> <%= @user.first_name %></h2>
 <h2><strong>Last Name:</strong> <%= @user.last_name %></h2>
 <h2><strong>Description:</strong> <%= @user.description %></h2>
@@ -26,20 +26,27 @@
 
 
 <% if @user.lessons.present? %>
-<div class="user_h1"><h1>User's Lessons they are teaching</h1></div>
+<div class="user_h1"><h1>User's Lessons</h1></div>
   <% @user.lessons.each do |lesson| %>
-    <a href="<%= lesson_path(lesson) %>">
 
-    <div class="card-category">
-    <h1><%= lesson.title %></h1>
-    <h2>category <%= lesson.category %></h2>
-    <h2>description <%= lesson.description %></h2>
-    <h2>price <%= lesson.price %></h2>
-    <h2>user <%= lesson.user.email %></h2>
-    <%= link_to "Cancel lesson?", lesson_path(lesson), data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to cancel?"} %>
-    </div>
-    </a>
-      <div class="user_h1"><h1>above lessons bookings statuses</h1></div>
+<div class="card border-primary mb-3">
+  <div class="card-header"><h1><%= lesson.title %></h1></div>
+  <div class="card-body text-primary">
+    <h5 class="card-title"><%= lesson.category %></h5>
+    <p class="card-text"><%= lesson.description %></p>
+        <p class="card-text">$<%= lesson.price %></p>
+        <p class="card-text">✉: <%= lesson.user.email %></p>
+
+  </div>
+    <div class="card-footer bg-transparent border-primary">                  <% if lesson.user == current_user %>
+        <%= link_to "Edit This lesson", edit_lesson_path(lesson), class: "btn btn-outline-warning rounded-pill" %>
+        <%= link_to "Cancel lesson?", lesson_path(lesson), data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to cancel?"} %>
+      <% end %>
+        <%= link_to "View This Lesson", lesson_path(lesson), class: "btn btn-outline-warning rounded-pill" %></div>
+</div>
+
+
+      <div class="user_h1"><h1>Above Lesson's Request Statuses</h1></div>
     <p>
       <div class="container">
         <div class="row people">
@@ -61,7 +68,7 @@
                         <%= link_to 'Decline', booking_decline_path(booking), class: "btn btn-danger position-absolute" %>
                       <% end %>
                       <p> <% if booking.lesson.user == current_user && booking.status != "pending" %>
-                      <%= link_to "Cancel booking?", booking_path(booking), data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to cancel?"} %>
+                      <%= link_to "Cancel booking?", booking_path(booking), class: "btn btn-warning", data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to cancel?"} %>
                       <% end %></p>
                     <% end %>
                   </div>
@@ -74,7 +81,7 @@
 
 
 <div class="user_h1"><h1>My Booked Lessons</h1></div>
-  <% @user.bookings.each do |booking| %>
+  <% @bookings.each do |booking| %>
     <div class="booked-lessons">
       <% if @user.photo.present? %>
         <%= link_to cl_image_tag(@user.photo.key, class: "card-img-top", alt: "User Avatar"), user_path(@user) %>
