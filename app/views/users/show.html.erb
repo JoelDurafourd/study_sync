@@ -28,15 +28,29 @@
 <% if @user.lessons.present? %>
 <div class="user_h1"><h1>User's Lessons</h1></div>
   <% @user.lessons.each do |lesson| %>
-
-<div class="card border-primary mb-3">
-  <div class="card-header"><h1><%= lesson.title %></h1></div>
-  <div class="card-body text-primary">
-    <h5 class="card-title"><%= lesson.category %></h5>
-    <p class="card-text"><%= lesson.description %></p>
-        <p class="card-text">$<%= lesson.price %></p>
-        <p class="card-text">✉: <%= lesson.user.email %></p>
-
+    <div class="card-trip">
+    <div class="card-trip-img">
+        <% if lesson.photos.present? %>
+          <%= link_to cl_image_tag(lesson.photos.first.key, class: "card-img-top"), user_path(lesson.user) %>
+        <% else %>
+          <%= link_to image_tag("categories_default/#{lesson.category.downcase}.jpg", class: "card-img-top", alt: "Default Avatar"), user_path(lesson.user) %>
+        <% end %>
+        </div>
+      <div class="card-trip-infos">
+        <div>
+          <a href="<%= lesson_path(lesson) %>">
+            <h2><%= lesson.title %></h2>
+          </a>
+          <p><%= lesson.description %></p>
+          <h2>category <%= lesson.category %></h2>
+        </div>
+        <h2 class="card-trip-pricing">price <%= number_to_currency(lesson.price, {unit: '$', precision: 0}) %></h2>
+          <% if @user.photo.present? %>
+            <%= link_to cl_image_tag(@user.photo.key, class: "rounded-circle", alt: "User Avatar"), lesson_path(lesson) %>
+          <% else %>
+            <%= link_to image_tag("default_avatar.png", class: "rounded-circle", alt: "Default Avatar"), lesson_path(lesson) %>
+          <% end %>
+        </div>
   </div>
     <div class="card-footer bg-transparent border-primary">                  <% if lesson.user == current_user %>
         <%= link_to "Edit This lesson", edit_lesson_path(lesson), class: "btn btn-outline-warning rounded-pill" %>
@@ -44,9 +58,9 @@
       <% end %>
         <%= link_to "View This Lesson", lesson_path(lesson), class: "btn btn-outline-warning rounded-pill" %></div>
 </div>
+        </div>
 
-
-      <div class="user_h1"><h1>Above Lesson's Request Statuses</h1></div>
+      <div class="user_h1"><h1>above lessons bookings statuses</h1></div>
     <p>
       <div class="container">
         <div class="row people">
