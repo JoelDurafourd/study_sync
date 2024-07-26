@@ -2,7 +2,7 @@ class Lesson < ApplicationRecord
   # this is the lesson module and its validations.
   # a lesson must belong to a user who is the author of the lesson, though it can contain 0 or more bookings.
   belongs_to :user
-  has_many :bookings
+  has_many :bookings, dependent: :destroy
 
   # commented out the category validation because a category has to be selected on creation anyway.
   # validates :category, presence: true, length: { in: 3..55 }

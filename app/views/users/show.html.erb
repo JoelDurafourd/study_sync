@@ -29,9 +29,6 @@
 <div class="user_h1"><h1>User's Lessons</h1></div>
   <% @user.lessons.each do |lesson| %>
 
-
-
-
 <div class="card border-primary mb-3">
   <div class="card-header"><h1><%= lesson.title %></h1></div>
   <div class="card-body text-primary">
@@ -43,6 +40,7 @@
   </div>
     <div class="card-footer bg-transparent border-primary">                  <% if lesson.user == current_user %>
         <%= link_to "Edit This lesson", edit_lesson_path(lesson), class: "btn btn-outline-warning rounded-pill" %>
+        <%= link_to "Cancel lesson?", lesson_path(lesson), data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to cancel?"} %>
       <% end %>
         <%= link_to "View This Lesson", lesson_path(lesson), class: "btn btn-outline-warning rounded-pill" %></div>
 </div>
