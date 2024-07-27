@@ -87,6 +87,13 @@
           <%= link_to image_tag("categories_default/#{lesson.category.downcase}.jpg", class: "card-img-top", alt: "Default Avatar"), user_path(lesson.user) %>
         <% end %>
         <div class="card-body">
+                  <div class="lesson_user_avatar">
+              <% if current_user.photo.present? %>
+              <%= cl_image_tag(lesson.user.photo.key, class: "avatar", alt: "User Avatar") %>
+              <% else %>
+                <%= image_tag("default_avatar.png", class: "avatar", alt: "Default Avatar") %>
+              <% end %>
+              </div>
           <h5 class="card-title"><b><%= lesson.title %></b></h5>
           <p class="card-text">Category: <%= lesson.category %></p>
           <p class="card-text">Description: <%= lesson.description %></p>
@@ -114,6 +121,13 @@
           <%= link_to image_tag("categories_default/#{lesson.category.downcase}.jpg", class: "card-img-top", alt: "Default Avatar"), user_path(lesson.user) %>
         <% end %>
           <div class="card-body">
+          <div class="lesson_user_avatar">
+              <% if current_user.photo.present? %>
+              <%= cl_image_tag(lesson.user.photo.key, class: "avatar", alt: "User Avatar") %>
+              <% else %>
+                <%= image_tag("default_avatar.png", class: "avatar", alt: "Default Avatar") %>
+              <% end %>
+              </div>
             <h5 class="card-title"><b><%= lesson.title %></b></h5>
             <p class="card-text">Category: <%= lesson.category %></p>
             <p class="card-text">Description: <%= lesson.description %></p>
