@@ -120,7 +120,7 @@
                 <h4><%= booking.end_date %></h4>
                 <h4><%= booking.status %></h4>
                 <p> <% if booking.user == current_user %>
-                    <%= link_to "Cancel booking", booking_path(booking), class: "btn btn-outline-bof", data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to cancel?"} %>
+                    <%= link_to "Cancel Booking", booking_path(booking), class: "btn btn-outline-bof", data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to cancel?"} %>
                     <% end %></p>
               </div>
             </div>
