@@ -1,0 +1,81 @@
+.lesson-form {
+  margin-top: 50px;
+
+  .form-card {
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+  }
+
+  .form-group {
+    position: relative;
+  }
+
+  .bold-label {
+    font-weight: bold;
+  }
+
+  .nav-button,
+  .simple-form {
+    padding: 10px;
+    margin-top: 5px;
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+  }
+
+  .simple-form input[type="text"],
+  .simple-form input[type="number"],
+  .simple-form select,
+  .simple-form textarea,
+  .simple-form input[type="checkbox"],
+  .simple-form input[type="radio"] {
+    display: block;
+    width: 100%;
+    padding: 8px;
+    margin: 10px 0;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+
+  .simple-form select {
+    width: 80%;
+  }
+
+  .simple-form input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #45a049;
+    }
+  }
+
+  .nav-button {
+    background-color: #FF8D8D;
+    color: white;
+    text-decoration: none;
+    border-radius: 50px;
+    cursor: pointer;
+    width: auto;
+    padding: 10px 20px;
+    text-align: center;
+    display: inline-block;
+    margin: 0 auto;
+
+    &:hover {
+      background-color: #FF8D8D;
+    }
+  }
+
+  .btn-container {
+    text-align: center;
+    margin-top: 20px;
+  }
+}
