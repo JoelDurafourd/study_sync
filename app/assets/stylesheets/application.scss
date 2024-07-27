@@ -79,9 +79,17 @@ body {
 
 // user profile lessons temporary placeholder css
 .card-top {
+  height: 400px;
   display: flex;
   align-items: center;
 justify-content: space-between;
+}
+
+.card-top-img {
+height: 100%;
+width: 30%;
+object-fit: cover;
+object-position: center;
 }
 
 .card-footer {
@@ -95,6 +103,7 @@ justify-content: space-between;
   overflow: hidden;
   background: white;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  margin-bottom: 16px;
 }
 
 .card-trip-img {
@@ -108,13 +117,19 @@ justify-content: space-between;
 }
 
 .card-trip h2 {
-  font-size: 24px;
+  font-size: 36px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.card-trip h3 {
+  font-size: 25px;
   font-weight: bold;
   margin: 0;
 }
 
 .card-trip p {
-  font-size: 20px;
+  font-size: 25px;
   opacity: .7;
   margin: 0;
 }
