@@ -122,7 +122,7 @@
         <% end %>
           <div class="card-body">
           <div class="lesson_user_avatar">
-              <% if current_user.photo.present? %>
+              <% if lesson.user.photo.present? %>
               <%= cl_image_tag(lesson.user.photo.key, class: "avatar", alt: "User Avatar") %>
               <% else %>
                 <%= image_tag("default_avatar.png", class: "avatar", alt: "Default Avatar") %>
