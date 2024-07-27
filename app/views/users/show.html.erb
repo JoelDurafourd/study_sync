@@ -91,9 +91,9 @@
                                 <%= link_to 'Decline', booking_decline_path(booking), class: "btn btn-danger" %>
                               </div>
                               <% end %>
-                              <p> <% if booking.lesson.user == current_user && booking.status != "pending" %>
+                              <% if booking.lesson.user == current_user && booking.status != "pending" %>
                               <%= link_to "Cancel Booking", booking_path(booking), class: "btn btn-outline-bof", data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to cancel?"} %>
-                              <% end %></p>
+                              <% end %>
                             <% end %>
 
                         </div>
