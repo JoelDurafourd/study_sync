@@ -78,6 +78,19 @@ body {
 
 
 // user profile lessons temporary placeholder css
+.card-top {
+  display: flex;
+  align-items: center;
+justify-content: space-between;
+}
+
+.card-footer {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  padding: 60px;
+}
+
 .card-trip {
   overflow: hidden;
   background: white;
@@ -101,7 +114,7 @@ body {
 }
 
 .card-trip p {
-  font-size: 12px;
+  font-size: 20px;
   opacity: .7;
   margin: 0;
 }

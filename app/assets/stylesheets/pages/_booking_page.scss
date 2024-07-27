@@ -10,7 +10,7 @@
 
 .booked-lessons img {
   height: 100%;
-  width: 120px;
+  width: 300px;
   object-fit: cover;
   padding-right: 10px;
 }
@@ -24,7 +24,7 @@
 .booked-lessons p {
   font-size: 26px;
   line-height: 1.4;
-  opacity: .7;
+  // opacity: .7;
   margin-bottom: 0;
   margin-top: 8px;
 }
@@ -48,4 +48,9 @@
   height: 300px;
   width: 300px;
   object-fit: cover;
+}
+
+.bookings-container {
+  width: 100%;
+  display: flex;
 }
