@@ -40,9 +40,9 @@
             <div class="card-trip">
             <div class="card-top">
                 <% if lesson.photos.present? %>
-                  <%= link_to cl_image_tag(lesson.photos.first.key, class: "card-img-top"), user_path(lesson.user) %>
+                  <%= cl_image_tag(lesson.photos.first.key, class: "card-top-img") %>
                 <% else %>
-                  <%= link_to image_tag("categories_default/#{lesson.category.downcase}.jpg", class: "card-img-top", alt: "Default Avatar"), user_path(lesson.user) %>
+                  <%= image_tag("categories_default/#{lesson.category.downcase}.jpg", class: "card-top-img", alt: "Default Avatar") %>
                 <% end %>
 
               <div class="card-trip-infos">
@@ -51,24 +51,23 @@
                     <h2><%= lesson.title %></h2>
                   </a>
                   <p><%= lesson.description %></p>
-                  <h2>Category: <%= lesson.category %></h2>
-                <h2 class="card-trip-pricing">Price: <%= number_to_currency(lesson.price, {unit: '$', precision: 0}) %>/per hour</h2>
+                  <h3>Category: <%= lesson.category %></h3>
+                <h3 class="card-trip-pricing">Price: <%= number_to_currency(lesson.price, {unit: '$', precision: 0}) %>/per hour</h3>
                 </div>
 
                 </div>
 
             <div class="card-footer bg-transparent border-primary">
             <% if lesson.user == current_user %>
-                <%= link_to "Edit This Lesson", edit_lesson_path(lesson), class: "btn btn-outline-warning rounded-pill mb-2" %>
-                <%= link_to "Cancel This Lesson?", lesson_path(lesson), class: "btn btn-outline-warning rounded-pill mb-2", data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to cancel?"} %>
+                <%= link_to "Edit This Lesson", edit_lesson_path(lesson), class: "btn btn-outline-p rounded-pill mb-2" %>
+                <%= link_to "Cancel This Lesson?", lesson_path(lesson), class: "btn btn-outline-p rounded-pill mb-2", data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to cancel?"} %>
               <% end %>
-                <%= link_to "View This Lesson", lesson_path(lesson), class: "btn btn-outline-warning rounded-pill mb-2" %>
+                <%= link_to "View This Lesson", lesson_path(lesson), class: "btn btn-outline-p rounded-pill mb-2" %>
                 </div>
                 </div>
 
 
 
-            <p>
               <div class="container">
                 <div class="p-4 bookings-container overflow-scroll">
                   <% lesson.bookings.order(created_at: :desc).each do |booking| %>
@@ -79,11 +78,13 @@
                         <% else %>
                           <%= link_to image_tag("default_avatar.png", class: "rounded-circle", alt: "Default Avatar"), booking_path(booking) %>
                         <% end %>
-                            <h3 class="name"><%= booking.lesson.title %></h3>
+                            <%# <h3 class="name"><%= booking.lesson.title %></h3>
                             <p> <strong> Start Date:</strong> <%= booking.start_date %></p>
                             <p> <strong> End Date:</strong> <%= booking.end_date %></p>
                             <p> <strong> Status:</strong> <%= booking.status %></p>
+
                             <% if booking.lesson.user == current_user %>
+
                               <% if booking.status == "pending" %>
                               <div>
                                 <%= link_to 'Accept', booking_accept_path(booking), class: "btn btn-success" %>
@@ -91,7 +92,7 @@
                               </div>
                               <% end %>
                               <p> <% if booking.lesson.user == current_user && booking.status != "pending" %>
-                              <%= link_to "Cancel booking", booking_path(booking), class: "btn btn-warning", data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to cancel?"} %>
+                              <%= link_to "Cancel Booking", booking_path(booking), class: "btn btn-outline-bof", data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to cancel?"} %>
                               <% end %></p>
                             <% end %>
 
@@ -99,8 +100,9 @@
                           <% end %>
                           </div>
                       </div>
+                        </div>
           <% end %>
-                    </div>
+
         <% end %>
 
 
@@ -114,9 +116,9 @@
                 <% end %>
               <div class="booked-lessons-infos">
                 <h2><%= booking.lesson.title %></h2>
-                <p><%= booking.start_date %></p>
-                <p><%= booking.end_date %></p>
-                <p><%= booking.status %></p>
+                <h4><%= booking.start_date %></h4>
+                <h4><%= booking.end_date %></h4>
+                <h4><%= booking.status %></h4>
                 <p> <% if booking.user == current_user %>
                     <%= link_to "Cancel booking", booking_path(booking), class: "btn btn-outline-bof", data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to cancel?"} %>
                     <% end %></p>
