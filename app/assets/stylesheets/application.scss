@@ -128,8 +128,14 @@ object-position: center;
   margin: 0;
 }
 
-.card-trip p {
+.card-trip h4 {
   font-size: 25px;
+  opacity: .7;
+  margin: 0;
+}
+
+.card-trip p {
+  font-size: 20px;
   opacity: .7;
   margin: 0;
 }
