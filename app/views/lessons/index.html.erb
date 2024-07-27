@@ -1,5 +1,11 @@
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
 <!-- Carousel Section -->
-<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-interval="4000">
   <ol class="carousel-indicators">
     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
     <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
@@ -13,7 +19,7 @@
       <%= image_tag('banner_img_slide2.jpg', alt: "Second slide", class: "d-block w-100") %>
     </div>
     <div class="carousel-item">
-      <%= image_tag('banner_slide3.jpg', alt: "Third slide", class: "d-block w-100") %>
+      <%= image_tag('banner-img-slide-3.jpg', alt: "Third slide", class: "d-block w-100") %>
     </div>
   </div>
   <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
