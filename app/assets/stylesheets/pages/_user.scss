@@ -62,3 +62,10 @@ padding: 10px;
   position: sticky;
   top: 95px;
 }
+
+.user-card-body {
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
