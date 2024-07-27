@@ -122,9 +122,9 @@
       <% @lessons.each do |lesson| %>
           <div class="card" style="width: 18rem;">
         <% if lesson.photos.present? %>
-          <%= link_to cl_image_tag(lesson.photos.first.key, class: "card-img-top"), user_path(lesson.user) %>
+          <%= cl_image_tag(lesson.photos.first.key, class: "card-img-top") %>
         <% else %>
-          <%= link_to image_tag("categories_default/#{lesson.category.downcase}.jpg", class: "card-img-top", alt: "Default Avatar"), user_path(lesson.user) %>
+          <%= image_tag("categories_default/#{lesson.category.downcase}.jpg", class: "card-img-top", alt: "Default Avatar") %>
         <% end %>
           <div class="card-body">
           <div class="lesson_user_avatar">
