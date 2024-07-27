@@ -2,7 +2,7 @@
   <div class="row  mt-4">
     <div class="col-3 p-1">
       <div class="fixed-profile">
-          <div class="user_h1"><h1>User's Profile</h1></div>
+          <div class="user_h1"><h1><center>User's Profile</center></h1></div>
 
 
           <div class="user_page">
@@ -35,7 +35,7 @@
 
 
         <% if @user.lessons.present? %>
-        <div class="user_h1"><h1>User's Lessons</h1></div>
+        <div class="user_h1"><h1><center>User's Lessons</center></h1></div>
           <% @user.lessons.each do |lesson| %>
             <div class="card-trip">
             <div class="card-top">
@@ -104,7 +104,7 @@
         <% end %>
 
 
-        <div class="user_h1"><h1>My Booked Lessons</h1></div>
+        <div class="user_h1"><h1><center>My Booked Lessons</h1></center></div>
           <% @bookings.each do |booking| %>
             <div class="booked-lessons">
                 <% if booking.lesson.photos.present? %>
