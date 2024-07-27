@@ -42,9 +42,9 @@
             <h2><%= lesson.title %></h2>
           </a>
           <p><%= lesson.description %></p>
-          <h2>category <%= lesson.category %></h2>
+          <h2>Category: <%= lesson.category %></h2>
         </div>
-        <h2 class="card-trip-pricing">price <%= number_to_currency(lesson.price, {unit: '$', precision: 0}) %></h2>
+        <h2 class="card-trip-pricing">Price: <%= number_to_currency(lesson.price, {unit: '$', precision: 0}) %>/per hour</h2>
           <% if @user.photo.present? %>
             <%= link_to cl_image_tag(@user.photo.key, class: "rounded-circle", alt: "User Avatar"), lesson_path(lesson) %>
           <% else %>
@@ -53,8 +53,8 @@
         </div>
   </div>
     <div class="card-footer bg-transparent border-primary">                  <% if lesson.user == current_user %>
-        <%= link_to "Edit This lesson", edit_lesson_path(lesson), class: "btn btn-outline-warning rounded-pill" %>
-        <%= link_to "Cancel lesson?", lesson_path(lesson), data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to cancel?"} %>
+        <%= link_to "Edit This Lesson", edit_lesson_path(lesson), class: "btn btn-outline-warning rounded-pill" %>
+        <%= link_to "Cancel This Lesson?", lesson_path(lesson), class: "btn btn-outline-warning rounded-pill", data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to cancel?"} %>
       <% end %>
         <%= link_to "View This Lesson", lesson_path(lesson), class: "btn btn-outline-warning rounded-pill" %></div>
 </div>
@@ -108,7 +108,7 @@
         <p><%= booking.end_date %></p>
         <p><%= booking.status %></p>
         <p> <% if booking.user == current_user %>
-            <%= link_to "Cancel booking?", booking_path(booking), data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to cancel?"} %>
+            <%= link_to "Cancel booking?", booking_path(booking), class: "btn btn-warning", data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to cancel?"} %>
             <% end %></p>
       </div>
     </div>
