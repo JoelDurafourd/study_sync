@@ -91,7 +91,7 @@
                               </div>
                               <% end %>
                               <p> <% if booking.lesson.user == current_user && booking.status != "pending" %>
-                              <%= link_to "Cancel booking?", booking_path(booking), class: "btn btn-warning", data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to cancel?"} %>
+                              <%= link_to "Cancel booking", booking_path(booking), class: "btn btn-warning", data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to cancel?"} %>
                               <% end %></p>
                             <% end %>
 
@@ -118,7 +118,7 @@
                 <p><%= booking.end_date %></p>
                 <p><%= booking.status %></p>
                 <p> <% if booking.user == current_user %>
-                    <%= link_to "Cancel booking?", booking_path(booking), class: "btn btn-warning", data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to cancel?"} %>
+                    <%= link_to "Cancel booking", booking_path(booking), class: "btn btn-outline-bof", data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to cancel?"} %>
                     <% end %></p>
               </div>
             </div>
