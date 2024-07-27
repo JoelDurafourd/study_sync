@@ -1,5 +1,11 @@
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
 <!-- Carousel Section -->
-<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-interval="4000">
   <ol class="carousel-indicators">
     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
     <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
@@ -13,7 +19,7 @@
       <%= image_tag('banner_img_slide2.jpg', alt: "Second slide", class: "d-block w-100") %>
     </div>
     <div class="carousel-item">
-      <%= image_tag('banner_slide3.jpg', alt: "Third slide", class: "d-block w-100") %>
+      <%= image_tag('banner-img-slide-3.jpg', alt: "Third slide", class: "d-block w-100") %>
     </div>
   </div>
   <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -36,7 +42,11 @@
       </div>
       <div class="search-category">
               <p><b>Categories:</b></p>
-        <%= select_tag :category, options_for_select(['All Categories', 'Programming', 'Science', 'Mathematics', 'Music', 'Foreign Languages'], selected: params[:category]), class: "form-control" %>
+        <%= select_tag :category, options_for_select(['All Categories',
+    "Programming", "Science", "Mathematics", "Music", "Languages", "Cooking",
+    "Fitness", "Travel", "Art", "Nature", "Yoga",
+    "Photography", "History", "Literature", "Marketing",
+    "Film", "Fashion"], selected: params[:category]), class: "form-control" %>
       </div>
       <div class="search-button">
         <%= submit_tag "Search", name: "", class: "btn-search" %>
@@ -49,26 +59,17 @@
   <div class="categories text-center">
     <h1>CATEGORIES</h1>
     <ul class="d-flex justify-content-center list-inline">
-      <li class="list-inline-item">
-        <%= image_tag('programming.png', alt: "programming", class: "category-icon programming") %>
-        <span class="category-name">PROGRAMMING</span>
-      </li>
-      <li class="list-inline-item">
-        <%= image_tag('science-logo.png', alt: "science-logo", class: "category-icon science-logo") %>
-        <span class="category-name">SCIENCE</span>
-      </li>
-      <li class="list-inline-item">
-        <%= image_tag('mathematics-logo.png', alt: "mathematics-logo", class: "category-icon mathematics-logo") %>
-        <span class="category-name">MATHEMATICS</span>
-      </li>
-      <li class="list-inline-item">
-        <%= image_tag('music-logo.png', alt: "music-logo", class: "category-icon music-logo") %>
-        <span class="category-name">MUSIC</span>
-      </li>
-      <li class="list-inline-item">
-        <%= image_tag('foreign-languages.png', alt: "foreign-languages", class: "category-icon foreign-languages") %>
-        <span class="category-name">FOREIGN LANGUAGES</span>
-      </li>
+      <% categories = ["Programming", "Science", "Mathematics", "Music", "Languages", "Cooking",
+                       "Fitness", "Travel", "Art", "Nature", "Photography", "History", "Literature",
+                       "Marketing", "Film", "Fashion"] %>
+      <% categories.each do |category| %>
+        <li class="list-inline-item">
+          <%= link_to lessons_path(query: params[:query], category: category), class: "category-link" do %>
+            <%= image_tag("#{category.downcase}-i.png", alt: "#{category.downcase}", class: "category-icon") %>
+            <span class="category-name"><%= category.upcase %></span>
+          <% end %>
+        </li>
+      <% end %>
     </ul>
   </div>
 </div>
@@ -86,12 +87,19 @@
 
     <% matching_lessons_by_category.first(5).each do |lesson| %>
       <div class="card" style="width: 18rem;">
-        <% if lesson.user.photo.present? %>
-          <%= link_to cl_image_tag(lesson.user.photo.key, class: "card-img-top", alt: "User Avatar"), user_path(lesson.user) %>
+        <% if lesson.photos.present? %>
+          <%= link_to cl_image_tag(lesson.photos.first.key, class: "card-img-top"), user_path(lesson.user) %>
         <% else %>
-          <%= link_to image_tag("default_avatar.png", class: "card-img-top", alt: "Default Avatar"), user_path(lesson.user) %>
+          <%= link_to image_tag("categories_default/#{lesson.category.downcase}.jpg", class: "card-img-top", alt: "Default Avatar"), user_path(lesson.user) %>
         <% end %>
         <div class="card-body">
+                  <div class="lesson_user_avatar">
+              <% if current_user.photo.present? %>
+              <%= cl_image_tag(lesson.user.photo.key, class: "avatar", alt: "User Avatar") %>
+              <% else %>
+                <%= image_tag("default_avatar.png", class: "avatar", alt: "Default Avatar") %>
+              <% end %>
+              </div>
           <h5 class="card-title"><b><%= lesson.title %></b></h5>
           <p class="card-text">Category: <%= lesson.category %></p>
           <p class="card-text">Description: <%= lesson.description %></p>
@@ -113,12 +121,19 @@
   <% else %>
       <% @lessons.each do |lesson| %>
           <div class="card" style="width: 18rem;">
-          <% if lesson.user.photo.present? %>
-            <%= link_to cl_image_tag(lesson.user.photo.key, class: "card-img-top", alt: "User Avatar"), user_path(lesson.user) %>
-          <% else %>
-            <%= link_to image_tag("default_avatar.png", class: "card-img-top", alt: "Default Avatar"), user_path(lesson.user) %>
-          <% end %>
+        <% if lesson.photos.present? %>
+          <%= cl_image_tag(lesson.photos.first.key, class: "card-img-top") %>
+        <% else %>
+          <%= image_tag("categories_default/#{lesson.category.downcase}.jpg", class: "card-img-top", alt: "Default Avatar") %>
+        <% end %>
           <div class="card-body">
+          <div class="lesson_user_avatar">
+              <% if lesson.user.photo.present? %>
+              <%= cl_image_tag(lesson.user.photo.key, class: "avatar", alt: "User Avatar") %>
+              <% else %>
+                <%= image_tag("default_avatar.png", class: "avatar", alt: "Default Avatar") %>
+              <% end %>
+              </div>
             <h5 class="card-title"><b><%= lesson.title %></b></h5>
             <p class="card-text">Category: <%= lesson.category %></p>
             <p class="card-text">Description: <%= lesson.description %></p>
