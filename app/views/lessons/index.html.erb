@@ -63,7 +63,7 @@
                        "Fitness", "Travel", "Art", "Nature", "Photography", "History", "Literature",
                        "Marketing", "Film", "Fashion"] %>
       <% categories.each do |category| %>
-        <li class="list-inline-item">
+        <li class="list-inline-item" id="<%= category.downcase %>">
           <%= link_to lessons_path(query: params[:query], category: category), class: "category-link" do %>
             <%= image_tag("#{category.downcase}-i.png", alt: "#{category.downcase}", class: "category-icon") %>
             <span class="category-name"><%= category.upcase %></span>
@@ -73,7 +73,6 @@
     </ul>
   </div>
 </div>
-
 
 <% if current_user && params[:query].present? == false && params[:category].present? == false %>
   <% if current_user.bookings.present? %>
@@ -105,7 +104,7 @@
           <p class="card-text">Description: <%= lesson.description %></p>
           <p class="card-text">Price: <%= number_to_currency(lesson.price, {unit: '$', precision: 0}) %></p>
           <p class="card-text">User: <%= lesson.user.email %></p>
-          <%= link_to "Go to Lesson", lesson_path(lesson), class: "btn btn-outline-warning rounded-pill" %>
+          <%= link_to "Go to Lesson", lesson_path(lesson), class: "btn btn-outline-p rounded-pill" %>
         </div>
       </div>
     <% end %>
@@ -139,7 +138,7 @@
             <p class="card-text">Description: <%= lesson.description %></p>
             <p class="card-text">Price: <%= number_to_currency(lesson.price, {unit: '$', precision: 0}) %></p>
             <p class="card-text">User: <%= lesson.user.email %></p>
-            <%= link_to "Go to Lesson", lesson_path(lesson), class: "btn btn-outline-warning rounded-pill" %>
+            <%= link_to "Go to Lesson", lesson_path(lesson), class: "btn btn-outline-p rounded-pill" %>
           </div>
         </div>
       <% end %>
