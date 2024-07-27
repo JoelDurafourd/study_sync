@@ -1,9 +1,22 @@
-<%= simple_form_for @lesson do |f| %>
-  <%= f.input :category %>
-  <%= f.input :description %>
-  <%= f.input :title %>
-  <%= f.input :price %>
-  <%= f.submit  class: "nav-button col-12"%>
+<%= simple_form_for @lesson, html: { class: 'lesson-form' } do |f| %>
+  <div class="form-card">
+    <div class="form-group">
+      <%= f.input :category, label_html: { class: 'bold-label' } %>
+    </div>
+    <div class="form-group">
+      <%= f.input :description, label_html: { class: 'bold-label' } %>
+    </div>
+    <div class="form-group">
+      <%= f.input :title, label_html: { class: 'bold-label' } %>
+    </div>
+    <div class="form-group">
+      <%= f.input :price, label_html: { class: 'bold-label' } %>
+    </div>
+    <div class="btn-container">
+      <%= f.submit class: "nav-button" %>
+    </div>
+  </div>
 <% end %>
-<%= link_to "Back to lessons", "/lessons", class: "nav-button col-12"%>
-
+<div class="btn-container">
+  <%= link_to "Back to lessons", "/lessons", class: "nav-button" %>
+</div>
