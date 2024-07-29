@@ -33,119 +33,78 @@
 </div>
 
 <!-- Search Bar Section -->
-<div class="search-bar-container">
-  <div class="search-bar">
-    <%= form_with url: lessons_path, method: :get, class: "search-form" do %>
-      <div class="search-input">
-        <p><b>Search:</b></p>
-        <%= text_field_tag :query, params[:query], class: "form-control", placeholder: "Type a tutor name, lessons, keywords" %>
-      </div>
-      <div class="search-category">
-              <p><b>Categories:</b></p>
-        <%= select_tag :category, options_for_select(['All Categories',
-    "Programming", "Science", "Mathematics", "Music", "Languages", "Cooking",
-    "Fitness", "Travel", "Art", "Nature", "Yoga",
-    "Photography", "History", "Literature", "Marketing",
-    "Film", "Fashion"], selected: params[:category]), class: "form-control" %>
-      </div>
-      <div class="search-button">
-        <%= submit_tag "Search", name: "", class: "btn-search" %>
-      </div>
-    <% end %>
-  </div>
-</div>
-
-<div class="categories-container">
-  <div class="categories text-center">
-    <h1>CATEGORIES</h1>
-    <ul class="d-flex justify-content-center list-inline">
-      <% categories = ["Programming", "Science", "Mathematics", "Music", "Languages", "Cooking",
-                       "Fitness", "Travel", "Art", "Nature", "Photography", "History", "Literature",
-                       "Marketing", "Film", "Fashion"] %>
-      <% categories.each do |category| %>
-        <li class="list-inline-item" id="<%= category.downcase %>">
-          <%= link_to lessons_path(query: params[:query], category: category), class: "category-link" do %>
-            <%= image_tag("#{category.downcase}-i.png", alt: "#{category.downcase}", class: "category-icon") %>
-            <span class="category-name"><%= category.upcase %></span>
-          <% end %>
-        </li>
-      <% end %>
-    </ul>
-  </div>
-</div>
-
-<% if current_user && params[:query].present? == false && params[:category].present? == false %>
-  <% if current_user.bookings.present? %>
-    <% last_booking_category = current_user.bookings.last.lesson.category %>
-    <% all_lessons = Lesson.all %>
-    <% matching_lessons_by_category = all_lessons.select { |lesson| lesson.category == last_booking_category } %>
-
-  <div class="recommendation-lesson">
-    <h1>RECOMMENDATIONS</h1>
-  <div class="card-container">
-
-    <% matching_lessons_by_category.first(5).each do |lesson| %>
-      <div class="card" style="width: 18rem;">
-        <% if lesson.photos.present? %>
-          <%= link_to cl_image_tag(lesson.photos.first.key, class: "card-img-top"), user_path(lesson.user) %>
-        <% else %>
-          <%= link_to image_tag("categories_default/#{lesson.category.downcase}.jpg", class: "card-img-top", alt: "Default Avatar"), user_path(lesson.user) %>
-        <% end %>
-        <div class="card-body">
-                  <div class="lesson_user_avatar">
-              <% if current_user.photo.present? %>
-              <%= cl_image_tag(lesson.user.photo.key, class: "avatar", alt: "User Avatar") %>
-              <% else %>
-                <%= image_tag("default_avatar.png", class: "avatar", alt: "Default Avatar") %>
-              <% end %>
-              </div>
-          <h5 class="card-title"><b><%= lesson.title %></b></h5>
-          <p class="card-text">Category: <%= lesson.category %></p>
-          <p class="card-text">Description: <%= lesson.description %></p>
-          <p class="card-text">Price: <%= number_to_currency(lesson.price, {unit: '$', precision: 0}) %></p>
-          <p class="card-text">User: <%= lesson.user.email %></p>
-          <%= link_to "Go to Lesson", lesson_path(lesson), class: "btn btn-outline-p rounded-pill" %>
+<div class="search-bar-and-results-div" data-controller="index-search">
+  <div class="search-bar-container">
+    <div class="search-bar">
+    <%= form_with url: lessons_path, method: :get, class: "search-form", remote: true do %>
+        <div class="search-input">
+          <p><b>Search:</b></p>
+          <%= text_field_tag :query, params[:query], class: "form-control", placeholder: "Type a tutor name, lessons, keywords" %>
         </div>
-      </div>
-    <% end %>
-    <% end %>
-  </div></div>
-<% end %>
-
-<div class="available-lesson">
-  <h1>AVAILABLE LESSONS</h1>
-<div class="card-container">
-  <% if @lessons.empty? %>
-    <h2>Sorry, no lessons match your search.</h2>
-  <% else %>
-      <% @lessons.each do |lesson| %>
-          <div class="card" style="width: 18rem;">
-        <% if lesson.photos.present? %>
-          <%= cl_image_tag(lesson.photos.first.key, class: "card-img-top") %>
-        <% else %>
-          <%= image_tag("categories_default/#{lesson.category.downcase}.jpg", class: "card-img-top", alt: "Default Avatar") %>
-        <% end %>
-          <div class="card-body">
-          <div class="lesson_user_avatar">
-              <% if lesson.user.photo.present? %>
-              <%= cl_image_tag(lesson.user.photo.key, class: "avatar", alt: "User Avatar") %>
-              <% else %>
-                <%= image_tag("default_avatar.png", class: "avatar", alt: "Default Avatar") %>
-              <% end %>
-              </div>
-            <h5 class="card-title"><b><%= lesson.title %></b></h5>
-            <p class="card-text">Category: <%= lesson.category %></p>
-            <p class="card-text">Description: <%= lesson.description %></p>
-            <p class="card-text">Price: <%= number_to_currency(lesson.price, {unit: '$', precision: 0}) %></p>
-            <p class="card-text">User: <%= lesson.user.email %></p>
-            <%= link_to "Go to Lesson", lesson_path(lesson), class: "btn btn-outline-p rounded-pill" %>
-          </div>
+        <div class="search-category">
+                <p><b>Categories:</b></p>
+          <%= select_tag :category, options_for_select(['All Categories',
+      "Programming", "Science", "Mathematics", "Music", "Languages", "Cooking",
+      "Fitness", "Travel", "Art", "Nature", "Yoga",
+      "Photography", "History", "Literature", "Marketing",
+      "Film", "Fashion"], selected: params[:category]), class: "form-control" %>
+        </div>
+        <div class="search-button" data-action="click->index-search#displayIndexResults">
+          <%= submit_tag "Search", name: "", class: "btn-search" %>
         </div>
       <% end %>
+    </div>
+  </div>
+
+  <div class="categories-container">
+    <div class="categories text-center">
+      <h1>CATEGORIES</h1>
+      <ul class="d-flex justify-content-center list-inline">
+        <% categories = ["Programming", "Science", "Mathematics", "Music", "Languages", "Cooking",
+                        "Fitness", "Travel", "Art", "Nature", "Photography", "History", "Literature",
+                        "Marketing", "Film", "Fashion"] %>
+        <% categories.each do |category| %>
+          <li class="list-inline-item" id="<%= category.downcase %>">
+            <%= link_to lessons_path(query: params[:query], category: category), class: "category-link" do %>
+              <%= image_tag("#{category.downcase}-i.png", alt: "#{category.downcase}", class: "category-icon") %>
+              <span class="category-name"><%= category.upcase %></span>
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+
+  <% if current_user && params[:query].present? == false && params[:category].present? == false %>
+    <% if current_user.bookings.present? %>
+      <% last_booking_category = current_user.bookings.last.lesson.category %>
+      <% all_lessons = Lesson.all %>
+      <% matching_lessons_by_category = all_lessons.select { |lesson| lesson.category == last_booking_category } %>
+
+    <div class="recommendation-lesson">
+      <h1>RECOMMENDATIONS</h1>
+    <div class="card-container">
+
+      <% matching_lessons_by_category.first(5).each do |lesson| %>
+                <%= render partial: 'lesson', locals: { lesson: lesson } %>
+      <% end %>
+      <% end %>
+    </div></div>
   <% end %>
-</div>
-</div>
 
+  <div class="available-lesson">
+    <h1>AVAILABLE LESSONS</h1>
+  <div class="card-container" data-index-search-target="displayIndexResults">
+    <% if @lessons.empty? %>
+      <h2>Sorry, no lessons match your search.</h2>
+    <% else %>
+        <% @lessons.each do |lesson| %>
+          <%= render partial: 'lesson', locals: { lesson: lesson } %>
+        <% end %>
+    <% end %>
+  </div>
+  </div>
+</div>
  <footer class="text-center text-lg-start" style="background-color: white;">
     <div class="container d-flex justify-content-center py-5">
       <button type="button" class="btn-sns btn-primary btn-lg btn-floating mx-2" style="background-color: #f4afaf;">
