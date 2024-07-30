@@ -28,7 +28,23 @@
   gap: 10px;
 }
 
+// .card-container {
+//   display: flex;
+//   flex-wrap: wrap; /* Allows items to wrap to the next line */
+//   gap: 20px; /* Adjust spacing between items */
+// }
+
+// .lesson {
+//   flex: 1 1 calc(25% - 20px); /* Adjust the width and spacing */
+//   box-sizing: border-box;
+//   border: 1px solid #ddd; /* Example border */
+//   padding: 15px; /* Example padding */
+//   border-radius: 8px; /* Example border-radius */
+//   background: #fff; /* Example background color */
+// }
+
 .card {
+  display: flex;
   margin: 10px;
   text-align: center;
 }
