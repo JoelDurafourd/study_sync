@@ -1,0 +1,5 @@
+<div class="card-container">
+  <% lessons.each do |lesson| %>
+    <%= render partial: 'lesson', locals: { lesson: lesson } %>
+  <% end %>
+</div>
