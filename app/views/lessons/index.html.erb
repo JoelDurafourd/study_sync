@@ -68,7 +68,8 @@
                         "Marketing", "Film", "Fashion"] %>
         <% categories.each do |category| %>
           <li class="list-inline-item" id="<%= category.downcase %>">
-            <%= link_to lessons_path(query: params[:query], category: category), class: "category-link" do %>
+            <%= link_to lessons_path(query: params[:query], category: category),
+                        data: { turbo_frame: "lessons" }, class: "category-link" do %>
               <%= image_tag("#{category.downcase}-i.png", alt: "#{category.downcase}", class: "category-icon") %>
               <span class="category-name"><%= category.upcase %></span>
             <% end %>
