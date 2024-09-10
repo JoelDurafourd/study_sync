@@ -102,8 +102,8 @@
       <% if @lessons.empty? %>
         <h2>Sorry, no lessons match your search.</h2>
       <% else %>
-        <%= turbo_frame_tag "lessons" do %>
-          <%= render partial: "lessons", locals: { lessons: @lessons } %>
+        <% @lessons.each do |lesson| %>
+          <%= render partial: "lesson", locals: { lesson: lesson } %>
         <% end %>
       <% end %>
     </div>
